@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/MininMobile/llamabot-rewrite#readme",
   "dependencies": {
+    "discord.js": "^11.2.1",
     "moment": "^2.19.3"
   }
 }
