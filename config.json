@@ -1,0 +1,23 @@
+{
+    "prefix":"x/",
+    "commandSuffix": ".js",
+    "commandPrefix": "Commands/",
+    "commandCatagories": [
+        {
+            "id":0,
+            "location":"Info/"
+        }
+    ],
+    "commandLoader": [
+        {
+            "name":"help",
+            "catagory":0,
+            "file":"help"
+        },
+        {
+            "name":"ping",
+            "catagory":1,
+            "file":"ping"
+        }
+    ]
+}
