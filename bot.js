@@ -36,7 +36,24 @@ bot.on("ready", async () => {
 
 // Message Received
 bot.on("message", async (message) => {
-    
+    if (!message.content.toLowerCase().startsWith(config.prefix)) return;
+
+    let cmd = message.content.split(" ")[0].substr(config.prefix.length);
+    let arguments = message.content.split(" "); arguments[0] = arguments[0].substr(config.prefix.length);
+
+    for (let i = 0; i < config.commandLoader.length; i++) {
+        let command = config.commandLoader[i]
+        if (command.name == cmd) {
+            let location = `${config.commandCatagories[command.catagory].location}`
+            let file = `./${config.commandPrefix}${location}${command.file}${config.commandSuffix}`;
+            if (fs.existsSync(file)) {
+                imports.m = message;
+                imports.a = arguments;
+                require(file).play(imports);
+            }
+            break
+        }
+    }
 });
 
 //// Connect Bot

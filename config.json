@@ -1,5 +1,5 @@
 {
-    "prefix":"x/",
+    "prefix":"$",
     "commandSuffix": ".js",
     "commandPrefix": "Commands/",
     "commandCatagories": [
