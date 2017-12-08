@@ -26,3 +26,18 @@ const imports = {
 function log(text) {
     console.log(moment().format('LTS') + ' | ' + text);
 }
+
+//// Events
+// Bot Connected
+bot.on("ready", async () => {
+    log("Connected")
+    log(`${bot.guilds.size} Servers`)
+});
+
+// Message Received
+bot.on("message", async (message) => {
+    
+});
+
+//// Connect Bot
+bot.login(token.token);
