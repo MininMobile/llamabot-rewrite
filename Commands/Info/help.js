@@ -6,6 +6,9 @@ exports.play = async function(i) {
     `**${i.config.prefix}status** Basic bot statistics`
     ];
 
-    i.m.author.send(lines.join("\n"));
+    var embed = new i.d.RichEmbed()
+        .setDescription(lines.join("\n"));
+
+    i.m.author.send(embed);
     i.m.channel.send(`Slid into your DMs :wink:`);
 }
