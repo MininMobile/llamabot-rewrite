@@ -16,13 +16,32 @@ const config = require("./config.json");
 // COMMAND IMPORTER
 const imports = {
     config:config,
-    l: function (text) { log(text) },
-    cl: function (text) { console.log(text) },
+    f:{
+        l:log,
+        cl:console.log,
+        formatSecs:formatSecs
+    },
     d:discord,
     b:bot
 };
 
 // FUNCTIONS
+function isNumeric(num) { return !isNaN(num) }
+
+function formatSecs(seconds) {
+	// Get Days/Hours/Minutes/Seconds
+	var numdays = Math.floor(seconds / 86400);
+	var numhours = Math.floor((seconds % 86400) / 3600);
+	var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
+	var numseconds = ((seconds % 86400) % 3600) % 60;
+
+	// Format Calculations
+	var result = numdays + ":" + numhours + ":" + numminutes + ":" + numseconds;
+
+	// Return Result
+	return result;
+}
+
 function log(text) {
     console.log(moment().format('LTS') + ' | ' + text);
 }

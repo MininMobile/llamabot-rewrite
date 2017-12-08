@@ -16,8 +16,13 @@
         },
         {
             "name":"ping",
-            "catagory":1,
+            "catagory":0,
             "file":"ping"
+        },
+        {
+            "name":"status",
+            "catagory":0,
+            "file":"status"
         }
     ]
 }
