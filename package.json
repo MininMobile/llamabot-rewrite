@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/MininMobile/llamabot-rewrite/issues"
   },
-  "homepage": "https://github.com/MininMobile/llamabot-rewrite#readme"
+  "homepage": "https://github.com/MininMobile/llamabot-rewrite#readme",
+  "dependencies": {
+    "moment": "^2.19.3"
+  }
 }
