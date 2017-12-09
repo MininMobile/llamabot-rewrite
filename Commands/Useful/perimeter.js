@@ -13,6 +13,6 @@ exports.play = async function(i) {
             i.m.reply("Numbers 1 & 2 must actually be numbers! (Not including the measurement)");
         }
     } else {
-        i.m.reply(`Please give 2 numbers and measurement, like \`${i.config.prefix}area 8 4 cm\` for instance.`);
+        i.m.reply(`Please give 2 numbers and measurement, like \`${i.config.prefix}peri 8 4 cm\` for instance.`);
     }
 }

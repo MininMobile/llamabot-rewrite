@@ -4,6 +4,7 @@ const discord = require("discord.js");
 const bot = new discord.Client();
 
 // Initialize Node Modules
+const af = require("minin-api-additionalfunctions");
 const moment = require("moment");
 const fs = require("fs");
 const path = require('path');
@@ -19,7 +20,7 @@ const imports = {
     f:{
         l:log,
         cl:console.log,
-        formatSecs:formatSecs,
+        formatSecs:af.formatSecs,
         isNumeric:isNumeric
     },
     d:discord,
@@ -28,20 +29,6 @@ const imports = {
 
 // FUNCTIONS
 function isNumeric(num) { return !isNaN(num) }
-
-function formatSecs(seconds) {
-	// Get Days/Hours/Minutes/Seconds
-	let numdays = Math.floor(seconds / 86400);
-	let numhours = Math.floor((seconds % 86400) / 3600);
-	let numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
-	let numseconds = ((seconds % 86400) % 3600) % 60;
-
-	// Format Calculations
-	let result = `${numdays}:${numhours}:${numminutes}:${numseconds}`;
-
-	// Return Result
-	return result;
-}
 
 function log(text) {
     console.log(moment().format('LTS') + ' | ' + text);
