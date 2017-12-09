@@ -19,7 +19,8 @@ const imports = {
     f:{
         l:log,
         cl:console.log,
-        formatSecs:formatSecs
+        formatSecs:formatSecs,
+        isNumeric:isNumeric
     },
     d:discord,
     b:bot
