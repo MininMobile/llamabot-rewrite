@@ -30,13 +30,13 @@ function isNumeric(num) { return !isNaN(num) }
 
 function formatSecs(seconds) {
 	// Get Days/Hours/Minutes/Seconds
-	var numdays = Math.floor(seconds / 86400);
-	var numhours = Math.floor((seconds % 86400) / 3600);
-	var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
-	var numseconds = ((seconds % 86400) % 3600) % 60;
+	let numdays = Math.floor(seconds / 86400);
+	let numhours = Math.floor((seconds % 86400) / 3600);
+	let numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
+	let numseconds = ((seconds % 86400) % 3600) % 60;
 
 	// Format Calculations
-	var result = numdays + ":" + numhours + ":" + numminutes + ":" + numseconds;
+	let result = `${numdays}:${numhours}:${numminutes}:${numseconds}`;
 
 	// Return Result
 	return result;
@@ -49,8 +49,7 @@ function log(text) {
 //// Events
 // Bot Connected
 bot.on("ready", async () => {
-    log("Connected")
-    log(`${bot.guilds.size} Servers`)
+    log(`Connected to ${bot.guilds.size} Servers`)
 });
 
 // Message Received
