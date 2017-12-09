@@ -20,6 +20,7 @@ const imports = {
     f:{
         l:log,
         cl:console.log,
+        r:af.randomInt,
         formatSecs:af.formatSecs,
         isNumeric:isNumeric
     },
@@ -28,7 +29,7 @@ const imports = {
 };
 
 // FUNCTIONS
-function isNumeric(num) { return !isNaN(num) }
+function isNumeric(num) { return !isNaN(num); }
 
 function log(text) {
     console.log(moment().format('LTS') + ' | ' + text);
@@ -42,6 +43,7 @@ bot.on("ready", async () => {
 
 // Message Received
 bot.on("message", async (message) => {
+    if (message.author.dmChannel.id == message.channel.id) if (message.author.id != "176048981615312897") return;
     if (!message.content.toLowerCase().startsWith(config.prefix)) return;
 
     let cmd = message.content.split(" ")[0].substr(config.prefix.length);
