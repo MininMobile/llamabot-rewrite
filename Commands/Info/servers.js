@@ -6,7 +6,7 @@ exports.play = async function(i) {
         if (servers.length > 950 ) {
             servers = servers + `\n\n*and ${inf.length-(u-1)} more...*`;
             
-            u = i.b.guilds.size;
+            break
         }
     }
 
