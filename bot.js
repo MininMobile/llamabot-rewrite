@@ -67,6 +67,7 @@ bot.on("message", async (message) => {
             if (fs.existsSync(file)) {
                 imports.m = message;
                 imports.a = arguments;
+                imports.c = cmd;
                 require(file).play(imports);
             }
             break

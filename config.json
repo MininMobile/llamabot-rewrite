@@ -6,6 +6,10 @@
         {
             "id":0,
             "location":"Info/"
+        },
+        {
+            "id":1,
+            "location":"Fun/"
         }
     ],
     "commandLoader": [
@@ -28,6 +32,37 @@
             "name":"servers",
             "catagory":0,
             "file":"servers"
+        },
+        
+        {
+            "name":"cool",
+            "catagory":1,
+            "file":"reactions"
+        },
+        {
+            "name":"no",
+            "catagory":1,
+            "file":"reactions"
+        },
+        {
+            "name":"notcool",
+            "catagory":1,
+            "file":"reactions"
+        },
+        {
+            "name":"yeah",
+            "catagory":1,
+            "file":"reactions"
+        },
+        {
+            "name":"yes",
+            "catagory":1,
+            "file":"reactions"
+        },
+        {
+            "name":"ohno",
+            "catagory":1,
+            "file":"reactions"
         }
     ]
 }
