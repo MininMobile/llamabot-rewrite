@@ -88,6 +88,21 @@
             "name":"div",
             "catagory":2,
             "file":"math"
+        },
+        {
+            "name":"sq",
+            "catagory":2,
+            "file":"squareroot"
+        },
+        {
+            "name":"area",
+            "catagory":2,
+            "file":"area"
+        },
+        {
+            "name":"peri",
+            "catagory":2,
+            "file":"perimeter"
         }
     ]
 }
