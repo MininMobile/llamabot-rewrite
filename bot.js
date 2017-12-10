@@ -12,14 +12,16 @@ const path = require('path');
 // Load Bot Modules
 const adblock = loadModule("adblock")
 
-// Initialize Modules
-moment.locale();
-var luni = new lc.Lunicode;
-luni.tools.creepify.options.maxHeight = 15;
-
-// Load Configuration
+//// c o n f i g u r e
 const token = require(path.join(__dirname + "/../token.json"));
 const config = require("./config.json");
+
+//// Initialize Modules
+// Moment
+moment.locale();
+// Lunicode
+var luni = new lc.Lunicode;
+luni.tools.creepify.options.maxHeight = 15;
 
 //// Create Variables
 // COMMAND IMPORTER
