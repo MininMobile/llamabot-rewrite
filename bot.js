@@ -1,5 +1,5 @@
 //// Install Modules
-// Init Discord Client
+// Initialize Discord Client
 const discord = require("discord.js");
 const bot = new discord.Client();
 
