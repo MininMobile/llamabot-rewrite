@@ -17,6 +17,9 @@ const config = require("./config.json");
 // COMMAND IMPORTER
 const imports = {
     config:config,
+    v:{
+        "guilds_adblock":null
+    },
     f:{
         l:log,
         cl:console.log,
@@ -42,7 +45,26 @@ function log(text) {
 //// Events
 // Bot Connected
 bot.on("ready", async () => {
+    imports.v.guilds_adblock = require("./guilds_adblock.json");
+    console.log(imports.v.guilds_adblock)
     log(`Connected to ${bot.guilds.size} Servers`)
+});
+
+// Guild Added
+bot.on("guildCreate", async (guild) => {
+    imports.v.guilds_adblock.push({ "id":guild.id, "activated":false })
+    console.log(imports.v.guilds_adblock)
+});
+
+// Guild Removed
+bot.on("guildDelete", async (guild) => {
+    for (var u = 0; u < imports.v.guilds_adblock.length; u++) {
+        if (imports.v.guilds_adblock[u].id == guild.id) {
+            imports.v.guilds_adblock.splice(u, 1);
+            break
+        }
+    }
+    console.log(imports.v.guilds_adblock)
 });
 
 // Message Received
@@ -87,6 +109,11 @@ bot.on("message", async (message) => {
         }
     }
 });
+
+//// Autosave
+setInterval(function() {
+    fs.writeFileSync("./guilds_adblock.json", JSON.stringify(imports.v.guilds_adblock));
+}, 10000);
 
 //// Connect Bot
 bot.login(token.token);
