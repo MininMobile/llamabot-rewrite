@@ -8,6 +8,8 @@ const af = require("minin-api-additionalfunctions");
 const moment = require("moment");
 const fs = require("fs");
 const path = require('path');
+//Initialize Bot Modules
+const adblock = loadModule("adblock")
 
 // Load Configuration
 const token = require(path.join(__dirname + "/../token.json"));
@@ -35,8 +37,8 @@ const imports = {
 // FUNCTIONS
 function isNumeric(num) { return !isNaN(num); }
 
-function loadModule(module, i) {
-    require("./bot_modules/" + module + ".js").load(i)
+function loadModule(module) {
+    return require("./bot_modules/" + module + ".js");
 }
 
 function log(text) {
@@ -110,8 +112,8 @@ bot.on("message", async (message) => {
 
 //// Autosave
 var autosave = setInterval(function() {
-    // Save Adblock Settings
-    fs.writeFileSync("./guilds_adblock.json", JSON.stringify(imports.v.guilds_adblock));
+    // Save Settings
+    adblock.on("save", imports)
 }, 600000);
 
 //// Connect Bot
