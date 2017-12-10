@@ -113,6 +113,12 @@
             "name":"adblock",
             "catagory":3,
             "file":"adblock"
+        },
+
+        {
+            "name":"8ball",
+            "catagory":1,
+            "file":"8ball"
         }
     ]
 }
