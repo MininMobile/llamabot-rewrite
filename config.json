@@ -119,6 +119,11 @@
             "name":"8ball",
             "catagory":1,
             "file":"8ball"
+        },
+        {
+            "name":"meme",
+            "catagory":1,
+            "file":"memes"
         }
     ]
 }
