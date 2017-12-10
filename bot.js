@@ -3,13 +3,19 @@
 const discord = require("discord.js");
 const bot = new discord.Client();
 
-// Initialize Node Modules
+// Load Node Modules
 const af = require("minin-api-additionalfunctions");
+const lc = require("./lunicode");
 const moment = require("moment");
 const fs = require("fs");
 const path = require('path');
-//Initialize Bot Modules
+// Load Bot Modules
 const adblock = loadModule("adblock")
+
+// Initialize Modules
+moment.locale();
+var luni = new lc.Lunicode;
+luni.tools.creepify.options.maxHeight = 15;
 
 // Load Configuration
 const token = require(path.join(__dirname + "/../token.json"));
