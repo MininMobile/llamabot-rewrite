@@ -4,6 +4,7 @@ const discord = require("discord.js");
 const bot = new discord.Client();
 
 // Load Node Modules
+const reddit = require("fetch-subreddit")
 const af = require("minin-api-additionalfunctions");
 const lc = require("./lunicode");
 const moment = require("moment");

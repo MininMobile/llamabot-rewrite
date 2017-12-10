@@ -18,6 +18,7 @@
   "homepage": "https://github.com/MininMobile/llamabot-rewrite#readme",
   "dependencies": {
     "discord.js": "^11.2.1",
+    "fetch-subreddit": "^3.0.0",
     "minin-api-additionalfunctions": "^1.2.18",
     "moment": "^2.19.3"
   }
