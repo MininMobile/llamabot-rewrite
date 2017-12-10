@@ -121,6 +121,16 @@
             "file":"8ball"
         },
         {
+            "name":"flip",
+            "catagory":2,
+            "file":"flip"
+        },
+        {
+            "name":"roll",
+            "catagory":2,
+            "file":"roll"
+        },
+        {
             "name":"meme",
             "catagory":1,
             "file":"memes"
