@@ -18,13 +18,14 @@ const config = require("./config.json");
 const imports = {
     config:config,
     v:{
-        "guilds_adblock":null
+        "guilds_adblock":[]
     },
     f:{
         l:log,
         cl:console.log,
         r:af.randomInt,
         formatSecs:af.formatSecs,
+        removeArrayObject:af.removeArrayObject,
         isNumeric:isNumeric
     },
     d:discord,
@@ -47,24 +48,23 @@ function log(text) {
 bot.on("ready", async () => {
     imports.v.guilds_adblock = require("./guilds_adblock.json");
     console.log(imports.v.guilds_adblock)
+
     log(`Connected to ${bot.guilds.size} Servers`)
 });
 
 // Guild Added
 bot.on("guildCreate", async (guild) => {
-    imports.v.guilds_adblock.push({ "id":guild.id, "activated":false })
-    console.log(imports.v.guilds_adblock)
+    
 });
 
 // Guild Removed
 bot.on("guildDelete", async (guild) => {
     for (var u = 0; u < imports.v.guilds_adblock.length; u++) {
-        if (imports.v.guilds_adblock[u].id == guild.id) {
+        if (guilds_adblock[u] == guild.id) {
             imports.v.guilds_adblock.splice(u, 1);
             break
         }
     }
-    console.log(imports.v.guilds_adblock)
 });
 
 // Message Received
@@ -76,7 +76,7 @@ bot.on("message", async (message) => {
     if (message.author.dmChannel.id == message.channel.id) if (message.author.id != "176048981615312897") return;
     
     // Load Modules
-    loadModule("adblock", imports);
+    //adblock.on("message", imports);
 
     // Give Users a Sense of Pride and Accomplishment for Using Different Commands
     if (!message.content.toLowerCase().startsWith(config.prefix)) return;
@@ -112,6 +112,7 @@ bot.on("message", async (message) => {
 
 //// Autosave
 setInterval(function() {
+    // Save Adblock Settings
     fs.writeFileSync("./guilds_adblock.json", JSON.stringify(imports.v.guilds_adblock));
 }, 10000);
 

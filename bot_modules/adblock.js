@@ -1,3 +1,3 @@
-exports.load = async function(i) {
+exports.on = async function(event, i) {
     
 }
