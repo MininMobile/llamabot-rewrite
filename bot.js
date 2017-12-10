@@ -85,7 +85,7 @@ bot.on("message", async (message) => {
     let cmd = message.content.split(" ")[0].substr(config.prefix.length);
     let arguments = message.content.split(" "); arguments[0] = arguments[0].substr(config.prefix.length);
 
-    // Go Thorugh all Commands
+    // Go Through all Commands
     for (let i = 0; i < config.commandLoader.length; i++) {
         // Create Command Object from Id
         let command = config.commandLoader[i]
