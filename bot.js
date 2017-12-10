@@ -47,8 +47,6 @@ function log(text) {
 // Bot Connected
 bot.on("ready", async () => {
     imports.v.guilds_adblock = require("./guilds_adblock.json");
-    console.log(imports.v.guilds_adblock)
-
     log(`Connected to ${bot.guilds.size} Servers`)
 });
 
@@ -73,10 +71,10 @@ bot.on("message", async (message) => {
     imports.m = message;
 
     // Deny DM Messages
-    if (message.author.dmChannel.id == message.channel.id) if (message.author.id != "176048981615312897") return;
+    if (message.author.dmChannel != null) if (message.author.id != "176048981615312897") return;
     
     // Load Modules
-    //adblock.on("message", imports);
+    adblock.on("message", imports);
 
     // Give Users a Sense of Pride and Accomplishment for Using Different Commands
     if (!message.content.toLowerCase().startsWith(config.prefix)) return;
@@ -111,10 +109,10 @@ bot.on("message", async (message) => {
 });
 
 //// Autosave
-setInterval(function() {
+var autosave = setInterval(function() {
     // Save Adblock Settings
     fs.writeFileSync("./guilds_adblock.json", JSON.stringify(imports.v.guilds_adblock));
-}, 10000);
+}, 600000);
 
 //// Connect Bot
 bot.login(token.token);
