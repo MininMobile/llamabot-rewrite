@@ -16,5 +16,13 @@ exports.on = async function(event, i) {
         case "save":
             fs.writeFileSync("./guilds_adblock.json", JSON.stringify(i.v.guilds_adblock));
             break
+        case "guildDelete":
+            for (var u = 0; u < imports.v.guilds_adblock.length; u++) {
+                if (i.v.guilds_adblock[u] == guild.id) {
+                    i.v.guilds_adblock.splice(u, 1);
+                    break
+                }
+            }
+            break
     }
 }

@@ -67,12 +67,7 @@ bot.on("guildCreate", async (guild) => {
 
 // Guild Removed
 bot.on("guildDelete", async (guild) => {
-    for (var u = 0; u < imports.v.guilds_adblock.length; u++) {
-        if (guilds_adblock[u] == guild.id) {
-            imports.v.guilds_adblock.splice(u, 1);
-            break
-        }
-    }
+    adblock.on("guildDelete", imports)
 });
 
 // Message Received
