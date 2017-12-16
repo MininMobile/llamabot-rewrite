@@ -8,7 +8,7 @@ exports.on = async function(event, i) {
                     i.m.content.includes("https://") ||
                     i.m.content.includes("discord.gg") ||
                     i.m.content.includes("discord.io")) &&
-                    i.m.author.id != bot.user.id) {
+                    i.m.author.id != i.b.user.id) {
                     if (i.m.deletable) { i.m.delete(); } 
                     else { i.m.channel.send(`I am missing \`MANAGE_MESSAGES\` permissions for adblock;\nIf you did not intend to enable adblock, type \`${i.config.prefix}adblock\`.`); }
                 }

@@ -38,6 +38,9 @@ const imports = {
         removeArrayObject:af.removeArrayObject,
         isNumeric:isNumeric
     },
+    bf:{
+        adblock:adblock
+    },
     d:discord,
     b:bot
 };
