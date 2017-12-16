@@ -15,7 +15,7 @@ exports.on = async function(event, i) {
             }
             break
         case "save":
-            fs.writeFileSync("./../json/guilds_adblock.json", JSON.stringify(i.v.guilds_adblock));
+            fs.writeFileSync("./json/guilds_adblock.json", JSON.stringify(i.v.guilds_adblock));
             break
         case "guildDelete":
             for (var u = 0; u < imports.v.guilds_adblock.length; u++) {
