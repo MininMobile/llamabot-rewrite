@@ -108,6 +108,11 @@
             "catagory":2,
             "file":"perimeter"
         },
+        {
+            "name":"eval",
+            "catagory":2,
+            "file":"eval"
+        },
         
         {
             "name":"adblock",
@@ -134,6 +139,11 @@
             "name":"meme",
             "catagory":1,
             "file":"memes"
+        },
+        {
+            "name":"insult",
+            "catagory":1,
+            "file":"insult"
         }
     ]
 }
