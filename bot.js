@@ -56,7 +56,7 @@ function log(text) {
 //// Events
 // Bot Connected
 bot.on("ready", async () => {
-    imports.v.guilds_adblock = require("./guilds_adblock.json");
+    imports.v.guilds_adblock = require("./json/guilds_adblock.json");
     log(`Connected to ${bot.guilds.size} Servers`)
 });
 

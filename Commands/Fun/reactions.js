@@ -1,6 +1,6 @@
 exports.play = async function(i) {
     let gif;
-    let r = require("../../reactions.json");
+    let r = require("./../../json/reactions.json");
     
     switch (i.c) {
         case "cool":
