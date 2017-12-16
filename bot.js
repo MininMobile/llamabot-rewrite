@@ -5,7 +5,7 @@ const bot = new discord.Client();
 
 // Load Node Moduless
 const af = require("minin-api-additionalfunctions");
-const lc = require("./lunicode");
+const lc = loadModule("./lunicode");
 const moment = require("moment");
 const fs = require("fs");
 const path = require('path');
