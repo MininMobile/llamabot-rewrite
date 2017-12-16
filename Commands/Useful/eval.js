@@ -21,7 +21,7 @@ exports.play = async function(i) {
     }
 
     embed.addField(":outbox_tray: Output", '```\n' + result + '\n```');
-    i.m.author.send(embed).catch(i.m.reply);
+    i.m.author.send(embed);
 
     await i.m.clearReactions();
     i.m.react('👌');
