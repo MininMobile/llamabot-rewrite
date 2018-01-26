@@ -1,0 +1,6 @@
+{
+    "ignore":[
+        ".git",
+        "guilds_adblock.json"
+    ]
+}
