@@ -1,6 +1,7 @@
 exports.play = async function(i) {
-	if (i.m.author.id == "176048981615312897" && i.a[1] == "-save") {
+	if (i.m.author.id == "176048981615312897" && i.a[1] == "-s") {
 		i.bf.adblock.on("save", i);
+		i.m.reply("Saved JSON list for Adblock");
 	} else if (i.m.member.hasPermission("MANAGE_MESSAGES")) {
 		if (i.v.guilds_adblock.includes(i.m.guild.id)) {
 			i.f.removeArrayObject(i.v.guilds_adblock, i.m.guild.id);
