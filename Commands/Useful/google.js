@@ -22,17 +22,20 @@ exports.play = async function(i) {
 				googleImageSearch.search(words).then(images => {
 					let resultTitle;
 					let resultLink;
+					let resultImage;
 		
 					if (response.searchInformation.totalResults == 0) {
 						resultTitle = 'No results for ***' + words + '***';
 						resultLink = '[   . . .   ]';
+						resultImage = "http://i0.kym-cdn.com/photos/images/original/001/285/460/8b6.jpg";
 					} else {
 						resultTitle = response.items[0].title;
 						resultLink = response.items[0].link;
+						resultImage = images[0].url;
 					}
 		
 					let embed = new i.d.RichEmbed()
-						.setThumbnail(images[0].url)
+						.setThumbnail(resultImage)
 						.addField("Google Search Query", words)
 						.addField("Result", resultTitle)
 						.addField("Link", resultLink);
