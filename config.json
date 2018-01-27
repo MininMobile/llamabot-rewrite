@@ -92,6 +92,11 @@
 			"catagory":1,
 			"file":"figlet"
 		},
+		{
+			"name":"glitch",
+			"catagory":1,
+			"file":"glitch"
+		},
 		
 		{
 			"name":"add",

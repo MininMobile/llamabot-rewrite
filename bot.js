@@ -5,7 +5,6 @@ const bot = new discord.Client();
 
 // Load Node Moduless
 const af = require("minin-api-additionalfunctions");
-const lc = loadModule("./lunicode");
 const moment = require("moment");
 const fs = require("fs");
 const path = require('path');
@@ -19,9 +18,6 @@ const config = require("./config.json");
 //// Initialize Modules
 // Moment
 moment.locale();
-// Lunicode
-var luni = new lc.Lunicode;
-luni.tools.creepify.options.maxHeight = 15;
 
 //// Create Variables
 // COMMAND IMPORTER
@@ -33,6 +29,7 @@ const imports = {
 	f:{
 		l:log,
 		cl:console.log,
+		lm:loadModule,
 		r:af.randomInt,
 		formatSecs:af.formatSecs,
 		removeArrayObject:af.removeArrayObject,
