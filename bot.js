@@ -76,7 +76,7 @@ bot.on("guildDelete", async (guild) => {
 // Message Received
 bot.on("message", async (message) => {
     // Add Info to Imports
-    imports.m = message;
+	imports.m = message;
 
     // Deny DM Messages
     if (message.author.dmChannel != null) if (message.author.id != "176048981615312897") return;
