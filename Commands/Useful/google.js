@@ -1,12 +1,9 @@
 exports.play = async function(i) {
-	var gs = new require("google-search");
-	var gi = new require("google-images");
+	const gs = new require("google-search");
+	const gi = new require("google-images");
 
-	var googleSearch = new gs({
-		key: 'AIzaSyAzW8u08AJE9ur-ByoJAYTEDFdb0JAJhSA',
-		cx: '007225782620738562910:eokdvs27v7o'
-	});
-	var googleImageSearch = new gi("007225782620738562910:eokdvs27v7o", "AIzaSyAzW8u08AJE9ur-ByoJAYTEDFdb0JAJhSA");
+	const googleSearch = new gs({ key: "AIzaSyAzW8u08AJE9ur-ByoJAYTEDFdb0JAJhSA", cx: "007225782620738562910:eokdvs27v7o" });
+	const googleImageSearch = new gi("007225782620738562910:eokdvs27v7o", "AIzaSyAzW8u08AJE9ur-ByoJAYTEDFdb0JAJhSA");
 
 	if (i.a[1] != null) {
 		i.a.shift();
