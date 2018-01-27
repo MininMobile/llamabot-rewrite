@@ -14,32 +14,41 @@ exports.play = async function(i) {
 			start: 1
 		}, function(error, response) {
 			if (error) {
-				i.m.reply("Whoopsie Doopsie!");
+				error(i);
 				return;
 			}
 
-			googleImageSearch.search(words).then(images => {
-				let resultTitle;
-				let resultLink;
-	
-				if (response.searchInformation.totalResults == 0) {
-					resultTitle = 'No results for ***' + words + '***';
-					resultLink = '[   . . .   ]';
-				} else {
-					resultTitle = response.items[0].title;
-					resultLink = response.items[0].link;
-				}
-	
-				let embed = new i.d.RichEmbed()
-					.setThumbnail(images[0].url)
-					.addField("Google Search Query", words)
-					.addField("Result", resultTitle)
-					.addField("Link", resultLink);
-	
-				i.m.channel.send(embed);
-			});
+			try {
+				googleImageSearch.search(words).then(images => {
+					let resultTitle;
+					let resultLink;
+		
+					if (response.searchInformation.totalResults == 0) {
+						resultTitle = 'No results for ***' + words + '***';
+						resultLink = '[   . . .   ]';
+					} else {
+						resultTitle = response.items[0].title;
+						resultLink = response.items[0].link;
+					}
+		
+					let embed = new i.d.RichEmbed()
+						.setThumbnail(images[0].url)
+						.addField("Google Search Query", words)
+						.addField("Result", resultTitle)
+						.addField("Link", resultLink);
+		
+					i.m.channel.send(embed);
+				});
+			} catch (e) {
+				error(i);
+				return;
+			}
 		});
 	} else {
 		i.m.reply("Please enter an argument!");
 	}
+}
+
+function error(i) {
+	i.m.reply("Whoopsie Doopsie!");
 }
