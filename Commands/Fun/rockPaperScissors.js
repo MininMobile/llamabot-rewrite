@@ -35,7 +35,7 @@ exports.play = async function(i) {
 		else if (uC == 0 && bC == 2)
 			i.m.channel.send(`${o[bC]}, You win!`);
 		else
-			i.m.channel.send(`Something bad happened! Maybe you cheated?`);
+			i.m.channel.send(`Something bad happened! Maybe you cheated? Anyway it's a draw...`);
 	} else {
 		i.m.channel.send(`Choose something you doofus!\n\nValid choices are; \`rock\`, \`paper\` and \`scissors\`!`);
 	}
