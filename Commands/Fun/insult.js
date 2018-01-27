@@ -1,5 +1,5 @@
 exports.play = async function(i) {
-    let r = require("./../../json/insults.json");
+	let r = require("./../../json/insults.json");
 
-    i.m.channel.send(r[i.f.r(0,r.length)])
+	i.m.channel.send(r[i.f.r(0,r.length)])
 }
