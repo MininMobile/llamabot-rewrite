@@ -19,6 +19,7 @@
   "dependencies": {
     "discord.js": "^11.2.1",
     "fetch-subreddit": "^3.0.0",
+    "google-images": "^2.1.0",
     "google-search": "0.0.5",
     "minin-api-additionalfunctions": "^1.2.18",
     "moment": "^2.19.3"
