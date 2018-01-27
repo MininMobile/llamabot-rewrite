@@ -11,6 +11,10 @@ exports.play = async function(i) {
 			i.m.channel.send(luni.tools.creepify.encode(words));
 			break;
 
+		case "bubble":
+			i.m.channel.send(luni.tools.bubbles.encode(words));
+			break;
+
 		default:
 			i.m.reply("eror lol");
 			break;
