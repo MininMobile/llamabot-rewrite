@@ -11,8 +11,16 @@ exports.play = async function(i) {
 			i.m.channel.send(luni.tools.creepify.encode(words));
 			break;
 
+		case "tiny":
+			i.m.channel.send(luni.tools.tiny.encode(words));
+			break;
+
 		case "bubble":
 			i.m.channel.send(luni.tools.bubbles.encode(words));
+			break;
+
+		case "square":
+			i.m.channel.send(luni.tools.squares.encode(words));
 			break;
 
 		default:
