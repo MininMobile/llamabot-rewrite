@@ -72,6 +72,21 @@
             "catagory":1,
             "file":"reactions"
         },
+        {
+            "name":"embed",
+            "catagory":1,
+            "file":"embed"
+        },
+        {
+            "name":"say",
+            "catagory":1,
+            "file":"say"
+        },
+        {
+            "name":"chicken",
+            "catagory":1,
+            "file":"chicken"
+        },
         
         {
             "name":"add",
