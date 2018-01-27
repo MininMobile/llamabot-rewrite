@@ -83,9 +83,14 @@
 			"file":"say"
 		},
 		{
-			"name":"chicken",
+			"name":"chkn",
 			"catagory":1,
 			"file":"chicken"
+		},
+		{
+			"name":"big",
+			"catagory":1,
+			"file":"figlet"
 		},
 		
 		{

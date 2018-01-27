@@ -4,24 +4,25 @@
   "description": "A re-written version of my discord bot called Llama Bot.",
   "main": "bot.js",
   "scripts": {
-	"test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-	"type": "git",
-	"url": "git+https://github.com/MininMobile/llamabot-rewrite.git"
+    "type": "git",
+    "url": "git+https://github.com/MininMobile/llamabot-rewrite.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-	"url": "https://github.com/MininMobile/llamabot-rewrite/issues"
+    "url": "https://github.com/MininMobile/llamabot-rewrite/issues"
   },
   "homepage": "https://github.com/MininMobile/llamabot-rewrite#readme",
   "dependencies": {
-	"discord.js": "^11.2.1",
-	"fetch-subreddit": "^3.0.0",
-	"google-images": "^2.1.0",
-	"google-search": "0.0.5",
-	"minin-api-additionalfunctions": "^1.2.18",
-	"moment": "^2.19.3"
+    "discord.js": "^11.2.1",
+    "fetch-subreddit": "^3.0.0",
+    "figlet": "^1.2.0",
+    "google-images": "^2.1.0",
+    "google-search": "0.0.5",
+    "minin-api-additionalfunctions": "^1.2.18",
+    "moment": "^2.19.3"
   }
 }
