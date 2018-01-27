@@ -6,5 +6,13 @@ exports.play = async function(i) {
 	i.a.shift();
 	var words = i.a.join(" ");
 
-	i.m.channel.send(luni.tools.creepify.encode(words));
+	switch (i.c) {
+		case "glitch":
+			i.m.channel.send(luni.tools.creepify.encode(words));
+			break;
+
+		default:
+			i.m.reply("eror lol");
+			break;
+	}
 }
