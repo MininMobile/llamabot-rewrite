@@ -194,6 +194,11 @@
 			"name":"insult",
 			"catagory":1,
 			"file":"insult"
+		},
+		{
+			"name":"rps",
+			"catagory":1,
+			"file":"rockPaperScissors"
 		}
 	]
 }
