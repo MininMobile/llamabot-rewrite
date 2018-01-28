@@ -83,6 +83,11 @@
 			"file":"embed"
 		},
 		{
+			"name":"cowsay",
+			"catagory":1,
+			"file":"cowsay"
+		},
+		{
 			"name":"say",
 			"catagory":1,
 			"file":"say"
@@ -184,6 +189,11 @@
 			"name":"google",
 			"catagory":2,
 			"file":"google"
+		},
+		{
+			"name":"online",
+			"catagory":2,
+			"file":"online"
 		},
 		{
 			"name":"meme",
