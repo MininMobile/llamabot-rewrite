@@ -22,10 +22,10 @@ moment.locale();
 
 //// Commandious Importious
 // Get Imports Class
-const iClassy = loadModule("imports");
+const iClass = loadModule("imports");
 
 // Make Imports Class
-const imports = new iClassy({
+const imports = new iClass({
 	config:config,
 	v:{
 		"guilds_adblock":[]
