@@ -8,4 +8,4 @@ class Data {
 	}
 }
 
-exports = Data;
+module.exports = Data;
