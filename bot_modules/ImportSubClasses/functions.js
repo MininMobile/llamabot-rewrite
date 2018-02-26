@@ -1,3 +1,4 @@
+/** Transfer Functions to Commands */
 class Data {
 	constructor(imports) {
 		this.l = imports.l;

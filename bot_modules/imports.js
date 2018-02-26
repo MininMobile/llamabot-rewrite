@@ -1,3 +1,4 @@
+/** Class for Importing Information to Commands */
 class Imports {
 	constructor(imports) {
 		this.config = imports.config
