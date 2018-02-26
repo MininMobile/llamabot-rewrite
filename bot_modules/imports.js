@@ -1,9 +1,7 @@
 class Imports {
 	constructor(imports) {
 		this.config = imports.config
-		this.v = {
-			guilds_adblock:imports.v.guilds_adblock
-		};
+		this.v = new require("./ImportSubClasses/data")(imports.v);
 		this.f = {
 			l:imports.f.l,
 			cl:imports.f.cl,
