@@ -1,6 +1,8 @@
 class Data {
 	constructor(imports) {
-		
+		this = {
+			adblock:imports.adblock
+		};
 	}
 }
 
