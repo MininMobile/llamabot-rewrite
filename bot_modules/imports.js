@@ -3,7 +3,7 @@ class Imports {
 		this.config = imports.config
 		this.v = {
 			guilds_adblock:imports.v.guilds_adblock
-		}
+		};
 		this.f = {
 			l:imports.f.l,
 			cl:imports.f.cl,
