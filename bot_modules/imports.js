@@ -13,4 +13,4 @@ class Imports {
 	}
 }
 
-exports = Imports;
+module.exports = Imports;
