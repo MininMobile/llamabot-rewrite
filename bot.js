@@ -19,9 +19,13 @@ const config = require("./config.json");
 // Moment
 moment.locale();
 
-//// Create Variables
-// COMMAND IMPORTER
-const imports = {
+
+//// Commandious Importious
+// Get Imports Class
+const ic = loadModule("imports");
+
+// Make Imports Class
+const imports = new ic.Imports({
 	config:config,
 	v:{
 		"guilds_adblock":[]
@@ -40,9 +44,10 @@ const imports = {
 	},
 	d:discord,
 	b:bot
-};
+});
 
-// FUNCTIONS
+//// Create Variables
+// Functions
 function isNumeric(num) { return !isNaN(num); }
 
 function loadModule(module) {
