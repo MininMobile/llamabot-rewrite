@@ -1,5 +1,8 @@
 /** Class for Importing Information to Commands */
 class Imports {
+	/**
+	 * @param {Object} imports 
+	 */
 	constructor(imports) {
 		this.config = imports.config
 		this.v = new require("./ImportSubClasses/data")(imports.v);
