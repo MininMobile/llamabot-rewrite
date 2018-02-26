@@ -1,14 +1,12 @@
 class Data {
 	constructor(imports) {
-		this = {
-			l:imports.l,
-			cl:imports.cl,
-			lm:imports.lm,
-			r:imports.r,
-			formatSecs:imports.formatSecs,
-			removeArrayObject:imports.removeArrayObject,
-			isNumeric:imports.isNumeric
-		};
+		this.l = imports.l;
+		this.cl = imports.cl;
+		this.lm = imports.lm;
+		this.r = imports.r;
+		this.formatSecs = imports.formatSecs;
+		this.removeArrayObject = imports.removeArrayObject;
+		this.isNumeric = imports.isNumeric;
 	}
 }
 
