@@ -4,10 +4,14 @@ class Imports {
 	 * @param {Object} imports 
 	 */
 	constructor(imports) {
+		let v = new require("./ImportSubClasses/data");
+		let f = new require("./ImportSubClasses/functions");
+		let bf = new require("./ImportSubClasses/botFunctions");
+
 		this.config = imports.config
-		this.v = new require("./ImportSubClasses/data")(imports.v);
-		this.f = new require("./ImportSubClasses/functions")(imports.f);
-		this.bf = new require("./ImportSubClasses/botFunctions")(imports.bf);
+		this.v = new v(imports.v);
+		this.f = new f(imports.f);
+		this.bf = new bf(imports.bf);
 		this.d = imports.d;
 		this.b = imports.b;
 	}
