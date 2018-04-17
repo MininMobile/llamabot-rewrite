@@ -196,6 +196,11 @@
 			"file":"online"
 		},
 		{
+			"name":"avatar",
+			"catagory":2,
+			"file":"avatar"
+		},
+		{
 			"name":"meme",
 			"catagory":1,
 			"file":"memes"

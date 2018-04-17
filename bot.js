@@ -19,13 +19,8 @@ const config = require("./config.json");
 // Moment
 moment.locale();
 
-
-//// Commandious Importious
-// Get Imports Class
-const iClass = loadModule("imports");
-
-// Make Imports Class
-const imports = new iClass({
+// Make Imports
+const imports = {
 	config:config,
 	v:{
 		"guilds_adblock":[]
@@ -44,7 +39,7 @@ const imports = new iClass({
 	},
 	d:discord,
 	b:bot
-});
+};
 
 //// Create Variables
 // Functions
@@ -106,8 +101,7 @@ bot.on("message", async (message) => {
 			// Ensure the Bot doesn't Die if System32 is Deleted
 			if (fs.existsSync(file)) {
 				// Set Import Parameters
-				imports.a = arguments;
-				imports.c = cmd;
+				imports
 				// Run Command
 				require(file).play(imports);
 			}
