@@ -22,11 +22,6 @@
 	],
 	"commandLoader": [
 		{
-			"name":"servers",
-			"catagory":0,
-			"file":"servers"
-		},
-		{
 			"name":"avatar",
 			"catagory":0,
 			"file":"avatar"

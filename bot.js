@@ -165,6 +165,26 @@ bot.on("message", async (message) => {
 			message.channel.send(embed);
 			} break;
 
+		case "servers": {
+			let lines = "";
+			let guilds = bot.guilds.array();
+
+			for (let i = 0; i < guilds.length; i++) {
+				if (lines.length < 1800) {
+					lines += `**${guilds[i]}** (${guilds[i].memberCount} Members)`;
+					lines += "\n";
+				} else {
+					break;
+				}
+			}
+
+			let embed = new discord.RichEmbed()
+				.setAuthor("Servers", bot.user.avatarURL)
+				.setDescription(lines);
+
+			message.channel.send(embed);
+			} break;
+
 		case "modules":
 			fs.readdir("bot_modules", "utf8", (err, data) => {
 				if (err) return message.channel.send(`ERROR: ${err.message}`);
