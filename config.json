@@ -22,12 +22,6 @@
 	],
 	"commandLoader": [
 		{
-			"name":"chkn",
-			"catagory":1,
-			"file":"chicken"
-		},
-
-		{
 			"name":"adblock",
 			"catagory":3,
 			"file":"adblock"
