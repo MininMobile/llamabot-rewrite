@@ -22,36 +22,6 @@
 	],
 	"commandLoader": [
 		{
-			"name":"cool",
-			"catagory":1,
-			"file":"reactions"
-		},
-		{
-			"name":"no",
-			"catagory":1,
-			"file":"reactions"
-		},
-		{
-			"name":"notcool",
-			"catagory":1,
-			"file":"reactions"
-		},
-		{
-			"name":"yeah",
-			"catagory":1,
-			"file":"reactions"
-		},
-		{
-			"name":"yes",
-			"catagory":1,
-			"file":"reactions"
-		},
-		{
-			"name":"ohno",
-			"catagory":1,
-			"file":"reactions"
-		},
-		{
 			"name":"chkn",
 			"catagory":1,
 			"file":"chicken"
