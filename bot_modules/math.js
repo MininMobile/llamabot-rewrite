@@ -7,14 +7,24 @@ const Mathc = new Command();
 Mathc.AddCommand("add", (message, args, bot) => {
 	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 5 5\``);
 
-	let num1 = parseInt(args[1]);
-	let num2 = parseInt(args[2]);
+	args.shift();
 
-	message.channel.send(num1 + num2);
+	let r = 0;
+
+	args.forEach((num) => { r += parseInt(num); });
+
+	message.channel.send(r);
 });
 
-function va(args) {
-	return false;
+function va(a) {
+	let args = a.slice(1, a.length);
+
+	r = true;
+
+	if (args.length < 2) r = false;
+	args.forEach((num) => { if (isNaN(parseInt(num))) r = false; });
+
+	return r;
 }
 
 module.exports = exports = Mathc;
