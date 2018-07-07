@@ -102,23 +102,7 @@
 			"catagory":1,
 			"file":"lunicode"
 		},
-		
-		{
-			"name":"sq",
-			"catagory":2,
-			"file":"squareroot"
-		},
-		{
-			"name":"area",
-			"catagory":2,
-			"file":"area"
-		},
-		{
-			"name":"peri",
-			"catagory":2,
-			"file":"perimeter"
-		},
-		
+
 		{
 			"name":"adblock",
 			"catagory":3,
