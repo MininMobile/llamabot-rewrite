@@ -25,4 +25,32 @@ Textfx.AddCommand("glitch", (message, args, bot) => {
 	message.channel.send(luni.tools.creepify.encode(words));
 });
 
+Textfx.AddCommand("tiny", (message, args, bot) => {
+	args.shift();
+	let words = args.join(" ");
+
+	message.channel.send(luni.tools.tiny.encode(words));
+});
+
+Textfx.AddCommand("bubble", (message, args, bot) => {
+	args.shift();
+	let words = args.join(" ");
+
+	message.channel.send(luni.tools.bubbles.encode(words));
+});
+
+Textfx.AddCommand("square", (message, args, bot) => {
+	args.shift();
+	let words = args.join(" ");
+
+	message.channel.send(luni.tools.roundsquares.encode(words));
+});
+
+Textfx.AddCommand("creepify", (message, args, bot) => {
+	args.shift();
+	let words = args.join(" ");
+
+	message.channel.send(luni.tools.bent.encode(words));
+});
+
 module.exports = exports = Textfx;
