@@ -22,16 +22,6 @@
 	],
 	"commandLoader": [
 		{
-			"name":"help",
-			"catagory":0,
-			"file":"help"
-		},
-		{
-			"name":"status",
-			"catagory":0,
-			"file":"status"
-		},
-		{
 			"name":"servers",
 			"catagory":0,
 			"file":"servers"

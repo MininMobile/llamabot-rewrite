@@ -126,7 +126,7 @@ bot.on("message", async (message) => {
 			});
 			break;
 
-		case "help":
+		case "help": {
 			let lines = "";
 
 			lines += "[**>>**](https://sites.google.com/site/llamabotwiki/) Commands"; lines += "\n";
@@ -142,19 +142,40 @@ bot.on("message", async (message) => {
 				.setFooter(`serving ${bot.guilds.size} servers`);
 
 			message.channel.send(embed);
-			break;
+			} break;
+
+		case "status": {
+			let memUsage = (process.memoryUsage().heapUsed/1000/1000/1000).toString();
+
+			let lines = "\n";
+
+			lines += `${bot.users.size} **Users**`; lines += "\n";
+			lines += `${bot.channels.size} **Channels**`; lines += "\n";
+			lines += `${bot.guilds.size} **Servers**`; lines += "\n";
+			lines += `${process.version} **Node.js Version**`; lines += "\n";
+			lines += `${discord.version} **Discord.js Version**`; lines += "\n";
+			lines += `${memUsage.charAt(0) + memUsage.charAt(1) + memUsage.charAt(2) + memUsage.charAt(3)} GB / 2GB **Memory Usage**`; lines += "\n";
+			lines += `${imports.f.formatSecs(Math.floor(bot.uptime/1000))} **Uptime** (Days:Hours:Mins:Secs)`; lines += "\n";
+		
+			let embed = new discord.RichEmbed()
+				.setAuthor("Statistics", bot.user.avatarURL)
+				.setDescription(lines)
+				.setFooter(`Related Commands: ${config.prefix}servers, ${config.prefix}modules`);
+		
+			message.channel.send(embed);
+			} break;
 
 		case "modules":
 			fs.readdir("bot_modules", "utf8", (err, data) => {
 				if (err) return message.channel.send(`ERROR: ${err.message}`);
 
-				let modules = "";
+				let modules = "\n";
 				data.forEach((file) => {
 					modules += `${file.substring(0, 1).toUpperCase()}${file.substring(1, file.length - 3)}\n`;
 				});
 
 				let embed = new discord.RichEmbed()
-					.setTitle("Modules")
+					.setAuthor("Modules", bot.user.avatarURL)
 					.setDescription(modules);
 
 				message.channel.send(embed);
