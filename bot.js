@@ -100,7 +100,7 @@ bot.on("message", async (message) => {
 
 	adblock.on("message", imports);
 
-	log(`${config.prefix}${cmd} FROM ${message.author.username} IN ${message.guild.name} (${message.author.id} SENT IN ${message.guild.id})`);
+	log(`${message.content} FROM ${message.author.username} IN ${message.guild.name} (${message.author.id} SENT IN ${message.guild.id})`);
 
 	for (let i = 0; i < config.commandLoader.length; i++) {
 		let command = config.commandLoader[i]

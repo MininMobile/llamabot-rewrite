@@ -62,11 +62,6 @@
 			"file":"cowsay"
 		},
 		{
-			"name":"say",
-			"catagory":1,
-			"file":"say"
-		},
-		{
 			"name":"chkn",
 			"catagory":1,
 			"file":"chicken"
