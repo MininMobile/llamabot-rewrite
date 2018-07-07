@@ -104,26 +104,6 @@
 		},
 		
 		{
-			"name":"add",
-			"catagory":2,
-			"file":"math"
-		},
-		{
-			"name":"sub",
-			"catagory":2,
-			"file":"math"
-		},
-		{
-			"name":"mult",
-			"catagory":2,
-			"file":"math"
-		},
-		{
-			"name":"div",
-			"catagory":2,
-			"file":"math"
-		},
-		{
 			"name":"sq",
 			"catagory":2,
 			"file":"squareroot"

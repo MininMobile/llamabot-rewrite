@@ -94,6 +94,7 @@ bot.on("message", async (message) => {
 
 	let args = message.content.split(" ");
 	let cmd = args[0].substring(config.prefix.length);
+	args[0] = cmd;
 	
 	imports.m = message;
 
