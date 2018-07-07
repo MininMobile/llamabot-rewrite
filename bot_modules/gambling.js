@@ -24,4 +24,17 @@ Gambling.AddCommand("8ball", (message, args, bot) => {
 	message.channel.send(answers[answer]);
 });
 
+Gambling.AddCommand("roll", (message, args, bot) => {
+	let sides = 6;
+
+	if (args[1] != undefined) {
+		if (!isNaN(parseInt(args[1]))) {
+			sides = parseInt(args[1]);
+		}
+	}
+
+	let roll = af.randomInt(1, sides);
+	message.channel.send(`You rolled a ${roll}!`)
+});
+
 module.exports = exports = Gambling;
