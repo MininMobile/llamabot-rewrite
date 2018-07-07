@@ -94,7 +94,6 @@ bot.on("message", async (message) => {
 
 	let args = message.content.split(" ");
 	let cmd = args[0].substring(config.prefix.length);
-	args.shift();
 	
 	imports.m = message;
 
@@ -109,6 +108,7 @@ bot.on("message", async (message) => {
 			let file = `./${config.commandPrefix}${location}${command.file}${config.commandSuffix}`;
 			
 			if (fs.existsSync(file)) {
+				imports.a = args;
 				require(file).play(imports);
 			}
 
@@ -200,6 +200,27 @@ bot.on("message", async (message) => {
 
 				message.channel.send(embed);
 			});
+			break;
+
+		case "eval":
+			if (message.author.id !== "176048981615312897") return;
+
+			args.shift();
+			let code = args.join(" ");
+		
+			let result;
+		
+			try {
+				result = eval(code);
+			} catch (e) {
+				result = e;
+			}
+
+			let embed = new discord.RichEmbed()
+				.addField(":inbox_tray: Input", "```javascript\n" + code + "```")
+				.addField(":outbox_tray: Output", "```\n" + result + "```");
+			
+			message.author.send(embed).then(() => { message.react("👌") });
 			break;
 
 		default:
