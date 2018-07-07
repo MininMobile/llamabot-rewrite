@@ -100,7 +100,7 @@ bot.on("message", async (message) => {
 
 	adblock.on("message", imports);
 
-	log(`${Config.Prefix}${command} FROM ${message.author.username} IN ${message.guild.name} (${message.author.id} SENT IN ${message.guild.id})`);
+	log(`${config.prefix}${cmd} FROM ${message.author.username} IN ${message.guild.name} (${message.author.id} SENT IN ${message.guild.id})`);
 
 	for (let i = 0; i < config.commandLoader.length; i++) {
 		let command = config.commandLoader[i]
@@ -114,6 +114,37 @@ bot.on("message", async (message) => {
 
 			break;
 		}
+	}
+
+	switch (cmd) {
+		case "ping":
+			message.channel.send(":ping_pong: Pinging...").then((m) => {
+				let botPing = `**Bot** ${m.createdTimestamp - message.createdTimestamp}ms`;
+				let apiPing = `**API** ${Math.round(Bot.ping)}ms`;
+
+				m.edit(`:ping_pong: ${botPing} ${apiPing}`);
+			});
+			break;
+
+		case "modules":
+			fs.readdir("bot_modules", "utf8", (err, data) => {
+				if (err) return message.channel.send(`ERROR: ${err.message}`);
+
+				let modules = "";
+				data.forEach((file) => {
+					modules += `${file.substring(0, 1).toUpperCase()}${file.substring(1, file.length - 3)}\n`;
+				});
+
+				let embed = new discord.RichEmbed()
+					.setTitle("Modules")
+					.setDescription(modules);
+
+				message.channel.send(embed);
+			});
+			break;
+
+		default:
+			if (Object.keys(commands).includes(cmd)) commands[cmd](message, args);
 	}
 });
 
