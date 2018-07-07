@@ -62,11 +62,6 @@
 			"file":"chicken"
 		},
 		{
-			"name":"big",
-			"catagory":1,
-			"file":"figlet"
-		},
-		{
 			"name":"glitch",
 			"catagory":1,
 			"file":"lunicode"
