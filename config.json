@@ -69,11 +69,6 @@
 			"file":"google"
 		},
 		{
-			"name":"online",
-			"catagory":2,
-			"file":"online"
-		},
-		{
 			"name":"meme",
 			"catagory":1,
 			"file":"memes"
