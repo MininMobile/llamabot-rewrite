@@ -22,12 +22,6 @@
 	],
 	"commandLoader": [
 		{
-			"name":"avatar",
-			"catagory":0,
-			"file":"avatar"
-		},
-		
-		{
 			"name":"cool",
 			"catagory":1,
 			"file":"reactions"
@@ -118,11 +112,6 @@
 			"name":"online",
 			"catagory":2,
 			"file":"online"
-		},
-		{
-			"name":"avatar",
-			"catagory":2,
-			"file":"avatar"
 		},
 		{
 			"name":"meme",
