@@ -11,6 +11,19 @@ Say.AddCommand("say", (message, args, bot) => {
 	if (message.guild.me.hasPermission("MANAGE_MESSAGES")) message.delete();
 });
 
+Say.AddCommand("embed", (message, args, bot) => {
+	args.shift();
+	let words = args.join(" ");
+
+	let embed = new Discord.RichEmbed()
+		.setAuthor(message.author.username, message.author.avatarURL)
+		.setDescription(words);
+
+	message.channel.send(embed);
+
+	if (message.guild.me.hasPermission("MANAGE_MESSAGES")) message.delete();
+});
+
 Say.AddCommand("cowsay", (message, args, bot) => {
 	args.shift();
 	let words = args.join(" ");

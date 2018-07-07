@@ -52,11 +52,6 @@
 			"file":"reactions"
 		},
 		{
-			"name":"embed",
-			"catagory":1,
-			"file":"embed"
-		},
-		{
 			"name":"chkn",
 			"catagory":1,
 			"file":"chicken"
