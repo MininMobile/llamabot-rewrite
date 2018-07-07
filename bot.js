@@ -11,16 +11,13 @@ var Commands = {};
 
 //// initialize
 // discord.js
-const Bot = new Discord.Client();
-
-// moment
-Moment.locale();
-
-// load bot modules
-const adblock = loadModule("adblock")
+const bot = new discord.Client();
 
 // moment
 moment.locale();
+
+// load bot modules
+const adblock = loadModule("adblock");
 
 // create imports
 const imports = {
@@ -59,7 +56,7 @@ function log(text) {
 // bot connect
 bot.on("ready", async () => {
 	imports.v.guilds_adblock = require("./json/guilds_adblock.json");
-	log(`Connected to ${bot.guilds.size} Servers`)
+	log(`Connected to ${bot.guilds.size} Servers`);
 });
 
 // guild joined
@@ -69,7 +66,7 @@ bot.on("guildCreate", async (guild) => {
 
 // guild left
 bot.on("guildDelete", async (guild) => {
-	adblock.on("guildDelete", imports)
+	adblock.on("guildDelete", imports);
 });
 
 // message recieved
@@ -82,8 +79,9 @@ bot.on("message", async (message) => {
 	
 	if (!message.content.toLowerCase().startsWith(config.prefix)) return;
 
-	let cmd = message.content.split(" ")[0].substr(config.prefix.length);
-	let arguments = message.content.split(" "); arguments[0] = arguments[0].substr(config.prefix.length);
+	let args = message.content.split(" ");
+	let cmd = args[0].substr(config.prefix.length);
+	args.shift();
 
 	for (let i = 0; i < config.commandLoader.length; i++) {
 		let command = config.commandLoader[i]
