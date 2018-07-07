@@ -71,17 +71,17 @@ bot.on("guildDelete", async (guild) => {
 
 // message recieved
 bot.on("message", async (message) => {
-	imports.m = message;
-
 	if (message.author.dmChannel != null) if (message.author.id != "176048981615312897") return;
-	
-	adblock.on("message", imports);
-	
-	if (!message.content.toLowerCase().startsWith(config.prefix)) return;
+	if (message.author.bot) return;
+	if (!message.content.startsWith(config.prefix)) return;
 
 	let args = message.content.split(" ");
-	let cmd = args[0].substr(config.prefix.length);
+	let cmd = args[0].substring(config.prefix.length);
 	args.shift();
+	
+	imports.m = message;
+
+	adblock.on("message", imports);
 
 	for (let i = 0; i < config.commandLoader.length; i++) {
 		let command = config.commandLoader[i]
