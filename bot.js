@@ -7,7 +7,7 @@ const af = require("minin-api-additionalfunctions");
 const path = require('path');
 
 //// variables
-var Commands = {};
+var commands = {};
 
 //// initialize
 // discord.js
@@ -55,8 +55,25 @@ function log(text) {
 //// events
 // bot connect
 bot.on("ready", async () => {
-	imports.v.guilds_adblock = require("./json/guilds_adblock.json");
-	log(`Connected to ${bot.guilds.size} Servers`);
+	fs.readdir("bot_modules", "utf8", (err, data) => {
+		if (err) throw new Error(err);
+
+		data.forEach((file) => {
+			if (!(["framework.js", "adblock.js", "lunicode.js"].includes(file))) {
+				let module = require(`./bot_modules/${file.substring(0, file.length - 3)}`);
+
+				Object.keys(module.commands).forEach((command) => {
+					commands[command] = module.commands[command];
+				});
+
+				console.log(`:: LOADED ${file.substring(0, 1).toUpperCase()}${file.substring(1, file.length - 3)}`);
+			}
+		});
+
+		imports.v.guilds_adblock = require("./json/guilds_adblock.json");
+
+		log(`Connected to ${bot.guilds.size} servers`);
+	});
 });
 
 // guild joined
@@ -82,6 +99,8 @@ bot.on("message", async (message) => {
 	imports.m = message;
 
 	adblock.on("message", imports);
+
+	log(`${Config.Prefix}${command} FROM ${message.author.username} IN ${message.guild.name} (${message.author.id} SENT IN ${message.guild.id})`);
 
 	for (let i = 0; i < config.commandLoader.length; i++) {
 		let command = config.commandLoader[i]
