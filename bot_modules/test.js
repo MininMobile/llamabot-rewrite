@@ -3,7 +3,7 @@ const Command = require("./framework");
 
 const Test = new Command();
 
-Test.AddCommand("test", (message, args) => {
+Test.AddCommand("test", (message, args, bot) => {
 	message.channel.send("Hello, World!");
 });
 

@@ -144,7 +144,7 @@ bot.on("message", async (message) => {
 			break;
 
 		default:
-			if (Object.keys(commands).includes(cmd)) commands[cmd](message, args);
+			if (Object.keys(commands).includes(cmd)) commands[cmd](message, args, bot);
 	}
 });
 
