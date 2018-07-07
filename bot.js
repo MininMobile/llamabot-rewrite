@@ -126,6 +126,24 @@ bot.on("message", async (message) => {
 			});
 			break;
 
+		case "help":
+			let lines = "";
+
+			lines += "[**>>**](https://sites.google.com/site/llamabotwiki/) Commands"; lines += "\n";
+			lines += "[**>>**](https://sites.google.com/site/llamabotwiki/home/features/commands) Wiki"; lines += "\n";
+			lines += "[**>>**](https://discordapp.com/oauth2/authorize?client_id=292320341701689344&scope=bot&permissions=36727808) Invite"; lines += "\n";
+			lines += "[**>>**](https://trello.com/b/9GCQPaPz/llama-bot-updates) Trello"; lines += "\n";
+			lines += "[**>>**](https://discord.gg/BBax4jk) Support Server"; lines += "\n";
+			lines += "[**>>**](https://sites.google.com/site/llamabotwiki/tos) Terms of Service"; lines += "\n";
+
+			let embed = new discord.RichEmbed()
+				.setAuthor(bot.user.username, bot.user.avatarURL)
+				.setDescription(lines)
+				.setFooter(`serving ${bot.guilds.size} servers`);
+
+			message.channel.send(embed);
+			break;
+
 		case "modules":
 			fs.readdir("bot_modules", "utf8", (err, data) => {
 				if (err) return message.channel.send(`ERROR: ${err.message}`);

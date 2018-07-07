@@ -27,11 +27,6 @@
 			"file":"help"
 		},
 		{
-			"name":"ping",
-			"catagory":0,
-			"file":"ping"
-		},
-		{
 			"name":"status",
 			"catagory":0,
 			"file":"status"
