@@ -56,26 +56,6 @@
 			"catagory":1,
 			"file":"chicken"
 		},
-		{
-			"name":"glitch",
-			"catagory":1,
-			"file":"lunicode"
-		},
-		{
-			"name":"tiny",
-			"catagory":1,
-			"file":"lunicode"
-		},
-		{
-			"name":"bubble",
-			"catagory":1,
-			"file":"lunicode"
-		},
-		{
-			"name":"square",
-			"catagory":1,
-			"file":"lunicode"
-		},
 
 		{
 			"name":"adblock",
