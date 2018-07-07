@@ -11,4 +11,30 @@ Say.AddCommand("say", (message, args, bot) => {
 	if (message.guild.me.hasPermission("MANAGE_MESSAGES")) message.delete();
 });
 
+Say.AddCommand("cowsay", (message, args, bot) => {
+	args.shift();
+	let words = args.join(" ");
+
+	let topline = "";
+	let botline = "";
+
+	for (let i = 0; i != words.length + 2; i++) {
+		topline += `_`;
+		botline += `-`;
+	}
+
+	message.channel.send("```\
+	\n " + topline + " \
+	\n< " + words + " > \
+	\n " + botline + " \
+	\n		\\   ^__^ \
+	\n		 \\  (oo)\\_______ \
+	\n			(__)\\	   )\\/\\ \
+	\n				||----w | \
+	\n				||	 || \
+	\n\
+	\n\
+	\n```");
+});
+
 module.exports = exports = Say;

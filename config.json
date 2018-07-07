@@ -57,11 +57,6 @@
 			"file":"embed"
 		},
 		{
-			"name":"cowsay",
-			"catagory":1,
-			"file":"cowsay"
-		},
-		{
 			"name":"chkn",
 			"catagory":1,
 			"file":"chicken"

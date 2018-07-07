@@ -93,7 +93,7 @@ bot.on("message", async (message) => {
 	if (!message.content.startsWith(config.prefix)) return;
 
 	let args = message.content.split(" ");
-	let cmd = args[0].substring(config.prefix.length);
+	let cmd = args[0].substring(config.prefix.length).toLowerCase();
 	args[0] = cmd;
 	
 	imports.m = message;
