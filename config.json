@@ -110,21 +110,6 @@
 		},
 
 		{
-			"name":"8ball",
-			"catagory":1,
-			"file":"8ball"
-		},
-		{
-			"name":"flip",
-			"catagory":2,
-			"file":"flip"
-		},
-		{
-			"name":"roll",
-			"catagory":2,
-			"file":"roll"
-		},
-		{
 			"name":"google",
 			"catagory":2,
 			"file":"google"
