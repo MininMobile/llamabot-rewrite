@@ -16,6 +16,48 @@ Mathc.AddCommand("add", (message, args, bot) => {
 	message.channel.send(r);
 });
 
+Mathc.AddCommand("subtract", (message, args, bot) => {
+	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 5 5\``);
+
+	args.shift();
+
+	let r = parseInt(args[0]);
+
+	args.shift();
+
+	args.forEach((num) => { r -= parseInt(num); });
+
+	message.channel.send(r);
+});
+
+Mathc.AddCommand("multiply", (message, args, bot) => {
+	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 5 5\``);
+
+	args.shift();
+
+	let r = parseInt(args[0]);
+
+	args.shift();
+
+	args.forEach((num) => { r *= parseInt(num); });
+
+	message.channel.send(r);
+});
+
+Mathc.AddCommand("divide", (message, args, bot) => {
+	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 5 5\``);
+
+	args.shift();
+
+	let r = parseInt(args[0]);
+
+	args.shift();
+
+	args.forEach((num) => { r /= parseInt(num); });
+
+	message.channel.send(r);
+});
+
 function va(a) {
 	let args = a.slice(1, a.length);
 
