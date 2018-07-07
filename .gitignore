@@ -1,2 +1,5 @@
-# Ignore Lists
+# ignore lists
 /json/guilds_adblock.json
+
+# dont steal my fucking token
+token.json
