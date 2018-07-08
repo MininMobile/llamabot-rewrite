@@ -53,7 +53,7 @@ bot.on("guildCreate", async (guild) => {
 
 // guild left
 bot.on("guildDelete", async (guild) => {
-
+	scope.adblock.call("guildDelete", { scope: scope, guild: guild });
 });
 
 // message recieved
@@ -66,6 +66,8 @@ bot.on("message", async (message) => {
 	let args = message.content.split(" ");
 	let cmd = args[0].substring(config.prefix.length).toLowerCase();
 	args[0] = cmd;
+
+	scope.adblock.call("message", { scope: scope, message: message, bot: bot })
 
 	log(`${message.content} FROM ${message.author.username} IN ${message.guild.name} (${message.author.id} SENT IN ${message.guild.id})`);
 
@@ -177,13 +179,13 @@ bot.on("message", async (message) => {
 			break;
 
 		default:
-			if (Object.keys(commands).includes(cmd)) commands[cmd](message, args, bot);
+			if (Object.keys(commands).includes(cmd)) commands[cmd](message, args, bot, scope);
 	}
 });
 
 //// autosave
 const autosave = setInterval(function() {
-	
+	scope.adblock.call("save", scope);
 }, 600000);
 
 //// connect
