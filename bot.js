@@ -1,10 +1,11 @@
 //// import modules
 const discord = require("discord.js");
+const af = require("minin-api-additionalfunctions");
 const moment = require("moment");
 const fs = require("fs");
+const path = require("path");
+const _util = require("./bot_modules/util");
 const config = require("./config.json");
-const af = require("minin-api-additionalfunctions");
-const path = require('path');
 
 //// variables
 var commands = { };
@@ -17,10 +18,8 @@ const bot = new discord.Client();
 // moment
 moment.locale();
 
-//// functions
-function log(text) {
-	console.log(moment().format('LTS') + ' | ' + text);
-}
+// util
+const util = new _util(moment);
 
 //// events
 // bot connect
@@ -29,7 +28,7 @@ bot.on("ready", async () => {
 		if (err) throw new Error(err);
 
 		data.forEach((file) => {
-			if (!(["framework.js", "lunicode.js"].includes(file))) {
+			if (!(["framework.js", "lunicode.js", "util.js"].includes(file))) {
 				let module = require(`./bot_modules/${file.substring(0, file.length - 3)}`);
 
 				module.Call("init", scope);
@@ -42,7 +41,7 @@ bot.on("ready", async () => {
 			}
 		});
 
-		log(`Connected to ${bot.guilds.size} servers`);
+		util.Log(`Connected to ${bot.guilds.size} servers`);
 	});
 });
 
@@ -59,7 +58,8 @@ bot.on("guildDelete", async (guild) => {
 // message recieved
 bot.on("message", async (message) => {
 	if (message.author.dmChannel != null) if (message.author.id != "176048981615312897") return;
-	if (message.author.id == bot.user.id) log(`${message.content} REPLIED ${bot.user.username} IN ${message.guild.name} (${message.guild.id})`);
+	scope.adblock.call("message", { scope: scope, message: message, bot: bot });
+	if (message.author.id == bot.user.id) util.Log(`${message.content} REPLIED ${bot.user.username} IN ${message.guild.name} (${message.guild.id})`);
 	if (message.author.bot) return;
 	if (!message.content.startsWith(config.prefix)) return;
 
@@ -67,9 +67,7 @@ bot.on("message", async (message) => {
 	let cmd = args[0].substring(config.prefix.length).toLowerCase();
 	args[0] = cmd;
 
-	scope.adblock.call("message", { scope: scope, message: message, bot: bot })
-
-	log(`${message.content} FROM ${message.author.username} IN ${message.guild.name} (${message.author.id} SENT IN ${message.guild.id})`);
+	util.Log(`${message.content} FROM ${message.author.username} IN ${message.guild.name} (${message.author.id} SENT IN ${message.guild.id})`);
 
 	switch (cmd) {
 		case "ping":

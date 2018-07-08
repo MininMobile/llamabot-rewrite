@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const af = require("minin-api-additionalfunctions");
+const Util = require("./util");
 const Command = require("./framework");
 const config = require("../config.json");
 
@@ -21,14 +22,17 @@ Adblock.On("init", (scope) => {
 
 						if (s.message.deletable && s.message.guild.me.hasPermission("MANAGE_MESSAGES")) {
 							s.message.delete();
+							console.log(`:: BLOCKED ${s.message.content}`);
 						} else {
 							s.message.channel.send(`I am missing \`MANAGE_MESSAGES\` permissions for adblock;\nIf you did not intend to enable adblock, type \`${config.prefix}adblock\`.`);
+							console.log(`:: FAILED BLOCK ${s.message.content}`);
 						}
 					}
 				}
 				break;
 
 			case "save":
+				Util.Log("SAVING ADBLOCK LIST");
 				fs.writeFileSync("json/adblock.json", JSON.stringify(s.adblock.guilds));
 				break;
 
