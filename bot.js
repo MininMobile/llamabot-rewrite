@@ -139,7 +139,7 @@ bot.on("message", async (message) => {
 			let guilds = bot.guilds.array();
 
 			for (let i = 0; i < guilds.length; i++) {
-				if (lines.length < 1800) {
+				if (lines.length < 1900) {
 					lines += `**${guilds[i]}** (${guilds[i].memberCount} Members)`;
 					lines += "\n";
 				} else {
