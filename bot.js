@@ -13,11 +13,11 @@ var commands = {};
 // discord.js
 const bot = new discord.Client();
 
-// moment
-moment.locale();
-
 // load bot modules
 const adblock = loadModule("adblock");
+
+// moment
+moment.locale();
 
 // create imports
 const imports = {
@@ -45,7 +45,7 @@ const imports = {
 function isNumeric(num) { return !isNaN(num); }
 
 function loadModule(module) {
-	return require("./bot_modules/" + module + ".js");
+	return require("./bot_modules/" + module);
 }
 
 function log(text) {
@@ -89,6 +89,7 @@ bot.on("guildDelete", async (guild) => {
 // message recieved
 bot.on("message", async (message) => {
 	if (message.author.dmChannel != null) if (message.author.id != "176048981615312897") return;
+	if (message.author.id == bot.user.id) log(`${message.content} REPLIED ${bot.user.username} IN ${message.guild.name} (${message.guild.id})`);
 	if (message.author.bot) return;
 	if (!message.content.startsWith(config.prefix)) return;
 
@@ -123,7 +124,7 @@ bot.on("message", async (message) => {
 		case "ping":
 			message.channel.send(":ping_pong: Pinging...").then((m) => {
 				let botPing = `**Bot** ${m.createdTimestamp - message.createdTimestamp}ms`;
-				let apiPing = `**API** ${Math.round(Bot.ping)}ms`;
+				let apiPing = `**API** ${Math.round(bot.ping)}ms`;
 
 				m.edit(`:ping_pong: ${botPing} ${apiPing}`);
 			});
