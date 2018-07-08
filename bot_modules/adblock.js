@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
+const af = require("minin-api-additionalfunctions");
 const Command = require("./framework");
 const config = require("../config.json");
 
@@ -28,7 +29,7 @@ Adblock.On("init", (scope) => {
 				break;
 
 			case "save":
-				fs.writeFileSync("../json/adblock.json", JSON.stringify(s.adblock.guilds));
+				fs.writeFileSync("json/adblock.json", JSON.stringify(s.adblock.guilds));
 				break;
 
 			case "guildDelete":
@@ -46,22 +47,23 @@ Adblock.On("init", (scope) => {
 	}
 });
 
-Adblock.AddCommand("adblock", (message, args, bot) => {
-	if (message.author.id == "176048981615312897" && i.a[1] == "-s") {
-		i.bf.adblock.on("save", i);
-		message.reply("Saved JSON list for Adblock");
-	} else if (message.member.hasPermission("MANAGE_MESSAGES")) {
-		if (i.v.guilds_adblock.includes(message.guild.id)) {
-			i.f.removeArrayObject(i.v.guilds_adblock, message.guild.id);
-			message.channel.send(`Adblock disabled, type \`${message.content}\` to enable it.`);
-			i.bf.adblock.on("save", i);
-		} else {
-			i.v.guilds_adblock.push(message.guild.id);
-			message.channel.send(`Adblock enabled, type \`${message.content}\` to disable it.`);
-			i.bf.adblock.on("save", i);
-		}
+Adblock.AddCommand("adblock", (message, args, bot, scope) => {
+	if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("you do not have the permission `MANAGE_MESSAGES`");
+	if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.reply("I do not have the permission `MANAGE_MESSAGES`");
+
+	if (message.author.id == "176048981615312897" && args[1] == "-s") {
+		scope.adblock.call("save", scope);
+		message.reply("saved JSON list for adblock.");
 	} else {
-		message.reply("You do not have the `MANAGE_MESSAGES`")
+		if (scope.adblock.guilds.includes(message.guild.id)) {
+			af.removeArrayObject(scope.adblock.guilds, message.guild.id);
+			message.channel.send(`Adblock disabled, type \`${config.prefix}${args[0]}\` to enable it.`);
+			scope.adblock.call("save", scope);
+		} else {
+			scope.adblock.guilds.push(message.guild.id);
+			message.channel.send(`Adblock enabled, type \`${config.prefix}${args[0]}\` to disable it.`);
+			scope.adblock.call("save", scope);
+		}
 	}
 });
 
