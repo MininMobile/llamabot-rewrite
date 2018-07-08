@@ -25,12 +25,6 @@
 			"name":"adblock",
 			"catagory":3,
 			"file":"adblock"
-		},
-
-		{
-			"name":"rps",
-			"catagory":1,
-			"file":"rockPaperScissors"
 		}
 	]
 }
