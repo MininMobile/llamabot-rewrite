@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const af = require("minin-api-additionalfunctions");
 const Command = require("./framework");
-const r = require("../json/reactions.json");
+const r = require("../data/reactions.json");
 
 const Reactions = new Command();
 

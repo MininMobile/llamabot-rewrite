@@ -9,7 +9,7 @@ const Adblock = new Command();
 
 Adblock.On("init", (scope) => {
 	scope.adblock = {};
-	scope.adblock.guilds = require("../json/adblock.json");
+	scope.adblock.guilds = require("../data/adblock.json");
 	scope.adblock.call = (name, s) => {
 		switch (name) {
 			case "message":
@@ -33,7 +33,7 @@ Adblock.On("init", (scope) => {
 
 			case "save":
 				Util.Log("SAVING ADBLOCK LIST");
-				fs.writeFileSync("json/adblock.json", JSON.stringify(s.adblock.guilds));
+				fs.writeFileSync("data/adblock.json", JSON.stringify(s.adblock.guilds));
 				break;
 
 			case "guildDelete":
