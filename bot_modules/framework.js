@@ -16,8 +16,10 @@ class Command {
 	 * @param {string} name name of command
 	 * @param {lambda} callback function callback
 	 */
-	AddCommand(name, callback) {
-		this.commands[name] = callback;
+	AddCommand(names, callback) {
+		names.split(",").forEach((name) => {
+			this.commands[name] = callback;
+		});
 	}
 }
 

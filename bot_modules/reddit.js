@@ -5,7 +5,7 @@ const Command = require("./framework");
 
 const Reddit = new Command();
 
-Reddit.AddCommand("meme", (message, args, bot) => {
+Reddit.AddCommand("meme,meirl,me_irl", (message, args, bot) => {
 	Fetch.fetchSubreddit("me_irl").then((urls) => {
 		let memes = urls[0].urls;
 
@@ -24,7 +24,7 @@ Reddit.AddCommand("meme", (message, args, bot) => {
 	});
 });
 
-Reddit.AddCommand("r", (message, args, bot) => {
+Reddit.AddCommand("r,reddit", (message, args, bot) => {
 	args.shift();
 	let words = args.join(" ");
 
