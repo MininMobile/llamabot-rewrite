@@ -4,7 +4,7 @@ const Command = require("./framework");
 
 const Mocking = new Command();
 
-Mocking.AddCommand("chkn", (message, args, bot) => {
+Mocking.AddCommand("chkn,chicken,mock", (message, args, bot) => {
 	args.shift();
 	let words = args.join(" ").toLowerCase();
 
@@ -17,7 +17,7 @@ Mocking.AddCommand("chkn", (message, args, bot) => {
 	message.channel.send(result, { file: "src/img/cock.png" });
 });
 
-Mocking.AddCommand("toxic", (message, args, bot) => {
+Mocking.AddCommand("toxic,insult", (message, args, bot) => {
 	let r = [
 		"slob on me nobe",
 		"suck me",

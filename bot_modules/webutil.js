@@ -24,7 +24,7 @@ Webutil.AddCommand("online", (message, args, bot) => {
 	}
 });
 
-Webutil.AddCommand("google", (message, args, bot) => {
+Webutil.AddCommand("google,search", (message, args, bot) => {
 	const GoogleSearch = new gs({ key: "AIzaSyAzW8u08AJE9ur-ByoJAYTEDFdb0JAJhSA", cx: "007225782620738562910:eokdvs27v7o" });
 	const GoogleImageSearch = new gi("007225782620738562910:eokdvs27v7o", "AIzaSyAzW8u08AJE9ur-ByoJAYTEDFdb0JAJhSA");
 

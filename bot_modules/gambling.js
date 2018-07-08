@@ -4,7 +4,7 @@ const Command = require("./framework");
 
 const Gambling = new Command();
 
-Gambling.AddCommand("8ball", (message, args, bot) => {
+Gambling.AddCommand("8ball,truth", (message, args, bot) => {
 	let answers = [
 		"Yes.",
 		"No.",
