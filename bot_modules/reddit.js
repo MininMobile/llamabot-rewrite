@@ -16,9 +16,35 @@ Reddit.AddCommand("meme", (message, args, bot) => {
 		
 		let embed = new Discord.RichEmbed()
 			.setImage(meme)
-			.setFooter(`me_irl`);
+			.setFooter("meme from r/me_irl");
 
-		message.channel.send(embed)
+		message.channel.send(embed);
+	}).catch((e) => {
+		message.channel.send(`ERROR: ${e}`);
+	});
+});
+
+Reddit.AddCommand("r", (message, args, bot) => {
+	args.shift();
+	let words = args.join(" ");
+
+	Fetch.fetchSubreddit(words).then((urls) => {
+		let posts = urls[0].urls;
+
+		let post = "fetchpost";
+		let count = 0;
+		while (!_extensions.includes(post.substr(post.length-4)) && count < 15) {
+			post = posts[af.randomInt(0, posts.length-1)];
+			count++;
+		}
+		
+		let embed = new Discord.RichEmbed()
+			.setImage(post)
+			.setFooter(`post from r/${words}`);
+
+		message.channel.send(embed);
+	}).catch((e) => {
+		message.channel.send(`ERROR: ${e} (either that or the subreddit doesn't exist)`);
 	});
 });
 
