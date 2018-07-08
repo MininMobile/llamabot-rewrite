@@ -118,6 +118,22 @@ bot.on("message", async (message) => {
 			message.channel.send(embed);
 			} break;
 
+		case "server":case "serverinfo": {
+			let lines = "\n";
+
+			lines += `${message.guild.channels.size} **Channels**`; lines += "\n";
+			lines += `${message.guild.channels.findAll("type", "voice").length} **Voice Channels**`; lines += "\n";
+			lines += `${message.guild.channels.findAll("type", "text").length} **Text Channels**`; lines += "\n";
+			lines += `${message.guild.memberCount} **Users**`; lines += "\n";
+			lines += `**ID** ${message.guild.id}`; lines += "\n";
+		
+			let embed = new discord.RichEmbed()
+				.setAuthor("Server Statistics", bot.user.avatarURL)
+				.setDescription(lines);
+		
+			message.channel.send(embed);
+			} break;
+
 		case "servers": {
 			let lines = "";
 			let guilds = bot.guilds.array();
@@ -127,6 +143,9 @@ bot.on("message", async (message) => {
 					lines += `**${guilds[i]}** (${guilds[i].memberCount} Members)`;
 					lines += "\n";
 				} else {
+					lines += "\n";
+					lines += `*...and ${guilds.length - i} more!*`
+					lines += "\n";
 					break;
 				}
 			}

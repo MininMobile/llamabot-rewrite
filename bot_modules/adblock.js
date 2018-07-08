@@ -32,7 +32,7 @@ Adblock.On("init", (scope) => {
 				break;
 
 			case "save":
-				Util.Log("SAVING ADBLOCK LIST");
+				console.log(":: SAVING ADBLOCK LIST");
 				fs.writeFileSync("data/adblock.json", JSON.stringify(s.adblock.guilds));
 				break;
 
