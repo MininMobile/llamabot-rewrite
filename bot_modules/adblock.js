@@ -34,7 +34,22 @@ const Command = require("./framework");
 const Adblock = new Command();
 
 Adblock.AddCommand("adblock", (message, args, bot) => {
-	// do adblock stuff
+	if (i.m.author.id == "176048981615312897" && i.a[1] == "-s") {
+		i.bf.adblock.on("save", i);
+		i.m.reply("Saved JSON list for Adblock");
+	} else if (i.m.member.hasPermission("MANAGE_MESSAGES")) {
+		if (i.v.guilds_adblock.includes(i.m.guild.id)) {
+			i.f.removeArrayObject(i.v.guilds_adblock, i.m.guild.id);
+			i.m.channel.send(`Adblock disabled, type \`${i.m.content}\` to enable it.`);
+			i.bf.adblock.on("save", i);
+		} else {
+			i.v.guilds_adblock.push(i.m.guild.id);
+			i.m.channel.send(`Adblock enabled, type \`${i.m.content}\` to disable it.`);
+			i.bf.adblock.on("save", i);
+		}
+	} else {
+		i.m.reply("You do not have the `MANAGE_MESSAGES`")
+	}
 });
 
 module.exports = exports = Adblock;

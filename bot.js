@@ -32,8 +32,10 @@ bot.on("ready", async () => {
 			if (!(["framework.js", "lunicode.js"].includes(file))) {
 				let module = require(`./bot_modules/${file.substring(0, file.length - 3)}`);
 
+				module.Call("init", scope);
+
 				Object.keys(module.commands).forEach((command) => {
-					command.Call("init", scope); commands[command] = module.commands[command];
+					commands[command] = module.commands[command];
 				});
 
 				console.log(`:: LOADED ${file.substring(0, 1).toUpperCase()}${file.substring(1, file.length - 3)}`);
