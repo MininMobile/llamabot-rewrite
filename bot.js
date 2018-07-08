@@ -53,7 +53,7 @@ bot.on("guildCreate", async (guild) => {
 
 // guild left
 bot.on("guildDelete", async (guild) => {
-	adblock.on("guildDelete", imports);
+
 });
 
 // message recieved
@@ -66,29 +66,8 @@ bot.on("message", async (message) => {
 	let args = message.content.split(" ");
 	let cmd = args[0].substring(config.prefix.length).toLowerCase();
 	args[0] = cmd;
-	
-	imports.m = message;
-
-	adblock.on("message", imports);
 
 	log(`${message.content} FROM ${message.author.username} IN ${message.guild.name} (${message.author.id} SENT IN ${message.guild.id})`);
-
-	//// vvvSUPPORT FOR LEGACY COMMANDS
-	for (let i = 0; i < config.commandLoader.length; i++) {
-		let command = config.commandLoader[i]
-		if (command.name == cmd) {
-			let location = `${config.commandCatagories[command.catagory].location}`
-			let file = `./${config.commandPrefix}${location}${command.file}${config.commandSuffix}`;
-			
-			if (fs.existsSync(file)) {
-				imports.a = args;
-				require(file).play(imports);
-			}
-
-			break;
-		}
-	}
-	//// ^^^SUPPORT FOR LEGACY COMMANDS
 
 	switch (cmd) {
 		case "ping":
@@ -129,7 +108,7 @@ bot.on("message", async (message) => {
 			lines += `${process.version} **Node.js Version**`; lines += "\n";
 			lines += `${discord.version} **Discord.js Version**`; lines += "\n";
 			lines += `${memUsage.charAt(0) + memUsage.charAt(1) + memUsage.charAt(2) + memUsage.charAt(3)} GB / 2GB **Memory Usage**`; lines += "\n";
-			lines += `${imports.f.formatSecs(Math.floor(bot.uptime/1000))} **Uptime** (Days:Hours:Mins:Secs)`; lines += "\n";
+			lines += `${af.formatSecs(Math.floor(bot.uptime/1000))} **Uptime** (Days:Hours:Mins:Secs)`; lines += "\n";
 		
 			let embed = new discord.RichEmbed()
 				.setAuthor("Statistics", bot.user.avatarURL)
@@ -203,8 +182,8 @@ bot.on("message", async (message) => {
 });
 
 //// autosave
-var autosave = setInterval(function() {
-	adblock.on("save", imports)
+const autosave = setInterval(function() {
+	
 }, 600000);
 
 //// connect
