@@ -28,11 +28,6 @@
 		},
 
 		{
-			"name":"meme",
-			"catagory":1,
-			"file":"memes"
-		},
-		{
 			"name":"rps",
 			"catagory":1,
 			"file":"rockPaperScissors"
