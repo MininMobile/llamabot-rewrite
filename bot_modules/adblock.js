@@ -3,7 +3,7 @@ const fs = require("fs");
 const af = require("minin-api-additionalfunctions");
 const Util = require("./util");
 const Command = require("./framework");
-const config = require("../config.json");
+const config = require("../src/config.json");
 
 const Adblock = new Command();
 

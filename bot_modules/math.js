@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const Command = require("./framework");
-const config = require("../config.json");
+const config = require("../src/config.json");
 
 const Mathc = new Command();
 

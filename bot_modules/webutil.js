@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const IsOnline = require("is-reachable");
 const Command = require("./framework");
-const config = require("../config.json");
+const config = require("../src/config.json");
 const gs = new require("google-search");
 const gi = new require("google-images");
 

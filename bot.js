@@ -5,7 +5,7 @@ const moment = require("moment");
 const fs = require("fs");
 const path = require("path");
 const _util = require("./bot_modules/util");
-const config = require("./config.json");
+const config = require("./src/config.json");
 
 //// variables
 var commands = { };
