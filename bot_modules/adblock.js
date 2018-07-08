@@ -1,4 +1,4 @@
-exports.on = async function(event, i) {
+/*exports.on = async function(event, i) {
 	var fs = require("fs");
 
 	switch (event) {
@@ -26,4 +26,15 @@ exports.on = async function(event, i) {
 			}
 			break
 	}
-}
+}*/
+
+const Discord = require("discord.js");
+const Command = require("./framework");
+
+const Adblock = new Command();
+
+Adblock.AddCommand("adblock", (message, args, bot) => {
+	// do adblock stuff
+});
+
+module.exports = exports = Adblock;

@@ -7,47 +7,17 @@ const af = require("minin-api-additionalfunctions");
 const path = require('path');
 
 //// variables
-var commands = {};
+var commands = { };
+var scope = { };
 
 //// initialize
 // discord.js
 const bot = new discord.Client();
 
-// load bot modules
-const adblock = loadModule("adblock");
-
 // moment
 moment.locale();
 
-// create imports
-const imports = {
-	config:config,
-	v:{
-		"guilds_adblock":[]
-	},
-	f:{
-		l:log,
-		cl:console.log,
-		lm:loadModule,
-		r:af.randomInt,
-		formatSecs:af.formatSecs,
-		removeArrayObject:af.removeArrayObject,
-		isNumeric:isNumeric
-	},
-	bf:{
-		adblock:adblock
-	},
-	d:discord,
-	b:bot
-};
-
 //// functions
-function isNumeric(num) { return !isNaN(num); }
-
-function loadModule(module) {
-	return require("./bot_modules/" + module);
-}
-
 function log(text) {
 	console.log(moment().format('LTS') + ' | ' + text);
 }
@@ -59,18 +29,16 @@ bot.on("ready", async () => {
 		if (err) throw new Error(err);
 
 		data.forEach((file) => {
-			if (!(["framework.js", "adblock.js", "lunicode.js"].includes(file))) {
+			if (!(["framework.js", "lunicode.js"].includes(file))) {
 				let module = require(`./bot_modules/${file.substring(0, file.length - 3)}`);
 
 				Object.keys(module.commands).forEach((command) => {
-					commands[command] = module.commands[command];
+					command.Call("init", scope); commands[command] = module.commands[command];
 				});
 
 				console.log(`:: LOADED ${file.substring(0, 1).toUpperCase()}${file.substring(1, file.length - 3)}`);
 			}
 		});
-
-		imports.v.guilds_adblock = require("./json/guilds_adblock.json");
 
 		log(`Connected to ${bot.guilds.size} servers`);
 	});

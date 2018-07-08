@@ -1,30 +1,3 @@
 {
-	"prefix": "--",
-	"commandSuffix": ".js",
-	"commandPrefix": "Commands/",
-	"commandCatagories": [
-		{
-			"id":0,
-			"location":"Info/"
-		},
-		{
-			"id":1,
-			"location":"Fun/"
-		},
-		{
-			"id":2,
-			"location":"Useful/"
-		},
-		{
-			"id":3,
-			"location":"Moderation/"
-		}
-	],
-	"commandLoader": [
-		{
-			"name":"adblock",
-			"catagory":3,
-			"file":"adblock"
-		}
-	]
+	"prefix": "--"
 }
