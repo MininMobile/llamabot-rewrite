@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
+const af = require("minin-api-additionalfunctions");
 const Command = require("./framework");
 
 const Rpg = new Command();
@@ -27,9 +28,24 @@ Rpg.On("init", (scope) => {
 	});
 });
 
-Rpg.AddCommand("rpgsave", (message, args, bot, scope) => {
-	if (message.author.id == "176048981615312897")
-		scope.rpg.call("save", scope);
+Rpg.AddCommand("rpgadmin", (message, args, bot, scope) => {
+	if (message.author.id == "176048981615312897") {
+		switch (args[1]) {
+			case "save":
+				scope.rpg.call("save", scope);
+				break;
+
+			case "give":
+				args[2] = args[2].replace("me", "176048981615312897");
+				scope.rpg.players[args[2]].inventory.push(args[3]);
+				break;
+
+			case "drop":
+				args[2] = args[2].replace("me", "176048981615312897");
+				af.removeArrayObject(scope.rpg.players[args[2]].inventory, args[3]);
+				break;
+		}
+	}
 });
 
 Rpg.AddCommand("rpginfo,profile", (message, args, bot, scope) => {
