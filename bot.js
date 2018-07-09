@@ -24,6 +24,10 @@ const util = new _util(moment);
 //// events
 // bot connect
 bot.on("ready", async () => {
+	scope.bot = bot;
+	
+	bot.user.setGame(`type ${config.prefix}help`);
+
 	fs.readdir("bot_modules", "utf8", (err, data) => {
 		if (err) throw new Error(err);
 
@@ -196,7 +200,11 @@ bot.on("message", async (message) => {
 			break;
 
 		default:
-			if (Object.keys(commands).includes(cmd)) commands[cmd](message, args, bot, scope);
+			if (Object.keys(commands).includes(cmd)) {
+				commands[cmd](message, args, bot, scope);
+			} else if (true) {
+
+			}
 	}
 });
 
