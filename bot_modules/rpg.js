@@ -12,6 +12,30 @@ Rpg.On("init", (scope) => {
 	scope.rpg.players = require("../data/rpg.json");
 	scope.rpg.call = (name, s) => {
 		switch (name) {
+			case "message":
+				let m = s.message;
+				let b = s.bot;
+				let player = scope.rpg.players[m.author.id];
+
+				if (player) {
+					//// give xp
+					player.xp += 10;
+
+					//// check for levelup
+					if (Math.round(player.xp/1000) > player.level) {
+						player.level = Math.round(player.xp/1000);
+						player.gold += 10;
+					}
+				} else {
+					scope.rpg.players[m.author.id]= {
+						xp: 1000,
+						level: 1,
+						gold: 10,
+						inventory: []
+					};
+				}
+				break;
+
 			case "save":
 				console.log(":: SAVING RPG DATA");
 				fs.writeFileSync("data/rpg.json", JSON.stringify(s.rpg.players));
@@ -23,8 +47,14 @@ Rpg.On("init", (scope) => {
 	}
 
 	bot.users.array().forEach((user) => {
-		if (!Object.keys(scope.rpg.players).includes(user.id))
-			scope.rpg.players[user.id] = { xp: 100, level: 1, gold: 10, inventory: [] };
+		if (!Object.keys(scope.rpg.players).includes(user.id)) {
+			scope.rpg.players[user.id] = {
+				xp: 1000,
+				level: 1,
+				gold: 10,
+				inventory: []
+			};
+		}
 	});
 });
 

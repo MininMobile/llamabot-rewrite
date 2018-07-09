@@ -62,9 +62,15 @@ bot.on("guildDelete", async (guild) => {
 // message recieved
 bot.on("message", async (message) => {
 	if (message.author.dmChannel != null) if (message.author.id != "176048981615312897") return;
+	
 	scope.adblock.call("message", { scope: scope, message: message, bot: bot });
 	if (message.author.id == bot.user.id) util.Log(`${message.content} REPLIED ${bot.user.username} IN ${message.guild.name} (${message.guild.id})`);
+
 	if (message.author.bot) return;
+
+	scope.message = message;
+	scope.rpg.call("message", scope);
+
 	if (!message.content.startsWith(config.prefix)) return;
 
 	let args = message.content.split(" ");
