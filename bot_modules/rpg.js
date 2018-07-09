@@ -65,6 +65,11 @@ Rpg.AddCommand("rpgadmin", (message, args, bot, scope) => {
 				scope.rpg.call("save", scope);
 				break;
 
+			case "poxp":
+				args[2] = args[2].replace("me", "176048981615312897");
+				scope.rpg.players[args[2]].xp += parseInt(args[3]);
+				break;
+
 			case "give":
 				args[2] = args[2].replace("me", "176048981615312897");
 				scope.rpg.players[args[2]].inventory.push(args[3]);

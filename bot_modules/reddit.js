@@ -26,7 +26,7 @@ Reddit.AddCommand("meme,meirl,me_irl", (message, args, bot) => {
 
 Reddit.AddCommand("r,reddit", (message, args, bot) => {
 	args.shift();
-	let words = args.join(" ");
+	let words = args.join("");
 
 	Fetch.fetchSubreddit(words).then((urls) => {
 		let posts = urls[0].urls;
