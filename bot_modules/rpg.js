@@ -30,4 +30,31 @@ Rpg.AddCommand("rpginfo,profile", (message, args, bot, scope) => {
 	message.channel.send(embed);
 });
 
+Rpg.AddCommand("inventory,inv", (message, args, bot, scope) => {
+	let inventory = ["socks", "socks", "socks", "socks", "socks", "socks", "socks", "socks", "underwear", "underwear", "underwear", "underwear", "shirt", "shirt", "pant", "pant", "hoodie"];
+	let invmap = {};
+
+	inventory.forEach((item) => {
+		if (invmap[item]) {
+			invmap[item] += 1;
+		} else {
+			invmap[item] = 1;
+		}
+	});
+
+	let lines = "\n";
+
+	Object.keys(invmap).forEach((item) => {
+		lines += `${item[0].toUpperCase()}${item.substring(1, item.length)} x${invmap[item]}`; lines += "\n";
+	});
+
+	let embed = new Discord.RichEmbed()
+		.setAuthor("Inventory", message.author.avatarURL)
+		.setColor(message.member.displayHexColor)
+		.setDescription(lines)
+		.setFooter(`total ${inventory.length} items`);
+
+	message.channel.send(embed);
+});
+
 module.exports = exports = Rpg;
