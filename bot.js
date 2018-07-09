@@ -212,7 +212,8 @@ bot.on("message", async (message) => {
 const autosave = setInterval(function() {
 	scope.adblock.call("save", scope);
 	scope.usrcmd.call("save", scope);
-}, 600000);
+	scope.rpg.call("save", scope);
+}, 3600000);
 
 //// connect
 bot.login(require("./token.json").token);

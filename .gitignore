@@ -1,6 +1,7 @@
 # ignore lists
 data/adblock.json
 data/commands.json
+data/rpg.json
 
 # dont steal my fucking token
 token.json

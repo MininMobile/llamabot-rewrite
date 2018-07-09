@@ -2,6 +2,7 @@
 	"ignore":[
 		".git",
 		"adblock.json",
-		"commands.json"
+		"commands.json",
+		"rpg.json"
 	]
 }
