@@ -25,7 +25,7 @@ const util = new _util(moment);
 // bot connect
 bot.on("ready", async () => {
 	scope.bot = bot;
-	
+
 	bot.user.setGame(`type ${config.prefix}help`);
 
 	fs.readdir("bot_modules", "utf8", (err, data) => {
@@ -202,8 +202,8 @@ bot.on("message", async (message) => {
 		default:
 			if (Object.keys(commands).includes(cmd)) {
 				commands[cmd](message, args, bot, scope);
-			} else if (true) {
-
+			} else if (Object.keys(scope.usrcmd.commands[message.guild.id]).includes(cmd)) {
+				message.channel.send(scope.usrcmd.commands[message.guild.id][cmd]);
 			}
 	}
 });
@@ -211,6 +211,7 @@ bot.on("message", async (message) => {
 //// autosave
 const autosave = setInterval(function() {
 	scope.adblock.call("save", scope);
+	scope.usrcmd.call("save", scope);
 }, 600000);
 
 //// connect

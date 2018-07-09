@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const Command = require("./framework");
+const config = require("../src/config.json");
 
 const Commands = new Command();
 
@@ -40,13 +41,14 @@ Commands.AddCommand("command", (message, args, bot, scope) => {
 	} else {
 		if (args.length == 1 && scope.usrcmd.commands[message.guild.id][args[0]]) {
 			delete scope.usrcmd.commands[message.guild.id][args[0]];
-			
+
 			message.channel.send(`Command removed, you can still add it back again!`);
 			scope.usrcmd.call("save", scope);
 		} else if (args.length > 1) {
-			scope.usrcmd.commands[message.guild.id][args[0]] = words;
+			scope.usrcmd.commands[message.guild.id][args[0]] = args.slice(1, args.length).join(" ");
 
-			message.channel.send(`Command added/updated, type \`${config.prefix}command ${args[1]}\` to delete it.`);
+			message.channel.send(`Command added/updated, you can use it with \`${config.prefix}${args[0]}\` and use \`${config.prefix}command ${args[0]}\` to delete it.`)
+				.then((m) => { setTimeout(() => { m.delete(); }, 5000) });
 			scope.usrcmd.call("save", scope);
 		} else {
 			message.reply("not enough arguments.");
