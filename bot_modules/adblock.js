@@ -52,8 +52,10 @@ Adblock.On("init", (scope) => {
 });
 
 Adblock.AddCommand("adblock", (message, args, bot, scope) => {
-	if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("you do not have the permission `MANAGE_MESSAGES`");
-	if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.reply("I do not have the permission `MANAGE_MESSAGES`");
+	if (message.author.id != "176048981615312897") {
+		if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("you do not have the permission `MANAGE_MESSAGES`");
+		if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.reply("I do not have the permission `MANAGE_MESSAGES`");
+	}
 
 	if (message.author.id == "176048981615312897" && args[1] == "-s") {
 		scope.adblock.call("save", scope);
