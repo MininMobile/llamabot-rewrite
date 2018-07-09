@@ -41,12 +41,12 @@ Reddit.AddCommand("r,reddit", (message, args, bot) => {
 		let embed;
 
 		if (!_extensions.includes(post.substr(post.length-4))) {
-			let embed = new Discord.RichEmbed()
+			embed = new Discord.RichEmbed()
 				.setDescription("*...oh no, no image posts detected...*")
 				.setImage("https://i.kym-cdn.com/photos/images/newsfeed/001/285/460/8b6.jpg")
 				.setFooter(`post from r/${words}`);
 		} else {
-			let embed = new Discord.RichEmbed()
+			embed = new Discord.RichEmbed()
 				.setImage(post)
 				.setFooter(`post from r/${words}`);
 		}
