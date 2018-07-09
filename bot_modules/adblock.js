@@ -63,10 +63,12 @@ Adblock.AddCommand("adblock", (message, args, bot, scope) => {
 	} else {
 		if (scope.adblock.guilds.includes(message.guild.id)) {
 			af.removeArrayObject(scope.adblock.guilds, message.guild.id);
+			
 			message.channel.send(`Adblock disabled, type \`${config.prefix}${args[0]}\` to enable it.`);
 			scope.adblock.call("save", scope);
 		} else {
 			scope.adblock.guilds.push(message.guild.id);
+			
 			message.channel.send(`Adblock enabled, type \`${config.prefix}${args[0]}\` to disable it.`);
 			scope.adblock.call("save", scope);
 		}
