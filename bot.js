@@ -219,7 +219,7 @@ const autosave = setInterval(function() {
 	scope.adblock.call("save", scope);
 	scope.usrcmd.call("save", scope);
 	scope.rpg.call("save", scope);
-}, 3600000);
+}, 600000);
 
 //// connect
 bot.login(require("./token.json").token);
