@@ -2,6 +2,9 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const af = require("minin-api-additionalfunctions");
 const Command = require("./framework");
+const _util = require("./util");
+
+const Util = new _util(null);
 
 const Rpg = new Command();
 
@@ -19,10 +22,10 @@ Rpg.On("init", (scope) => {
 
 				if (player) {
 					//// give xp
-					player.xp += 10;
+					player.xp += Util.csch((player.xp * 10) / 50000) + 1;
 
 					//// check for levelup
-					if (Math.round(player.xp/1000) > player.level) {
+					if (Math.floor(player.xp/1000) > player.level) {
 						player.level = Math.round(player.xp/1000);
 						player.gold += 10;
 					}
@@ -89,7 +92,7 @@ Rpg.AddCommand("rpginfo,profile", (message, args, bot, scope) => {
 		.setAuthor(message.author.username, "attachment://user.png")
 		.setColor(message.member.displayHexColor)
 		.setThumbnail(message.author.avatarURL)
-		.setFooter(`${undefined}xp/per message`);
+		.setFooter(`${Util.csch((scope.rpg.players[message.author.id].xp * 10) / 50000) + 1}xp/per message`);
 
 	embed
 		.addField("Gold `$NPN`", scope.rpg.players[message.author.id].gold)
