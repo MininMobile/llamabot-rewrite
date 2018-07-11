@@ -22,7 +22,7 @@ Rpg.On("init", (scope) => {
 
 				if (player) {
 					//// give xp
-					player.xp += Util.csch((player.xp * 10) / 50000) + 1;
+					player.xp += xpr(player.xp);
 
 					//// check for levelup
 					if (Math.floor(player.xp/1000) > player.level) {
@@ -92,12 +92,12 @@ Rpg.AddCommand("rpginfo,profile", (message, args, bot, scope) => {
 		.setAuthor(message.author.username, "attachment://user.png")
 		.setColor(message.member.displayHexColor)
 		.setThumbnail(message.author.avatarURL)
-		.setFooter(`${Util.csch((scope.rpg.players[message.author.id].xp * 10) / 50000) + 1}xp/per message`);
+		.setFooter(`${Math.round(xpr(scope.rpg.players[message.author.id].xp))}xp/per message`);
 
 	embed
 		.addField("Gold `$NPN`", scope.rpg.players[message.author.id].gold)
 		.addField("Level", scope.rpg.players[message.author.id].level)
-		.addField("Experience", scope.rpg.players[message.author.id].xp);
+		.addField("Experience", Math.round(scope.rpg.players[message.author.id].xp));
 
 	message.channel.send(embed);
 });
@@ -130,5 +130,9 @@ Rpg.AddCommand("inventory,inv", (message, args, bot, scope) => {
 
 	message.channel.send(embed);
 });
+
+function xpr(xp) {
+	return Util.csch(xp / 50000) + 1;
+}
 
 module.exports = exports = Rpg;
