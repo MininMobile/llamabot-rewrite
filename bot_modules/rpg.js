@@ -106,6 +106,34 @@ Rpg.AddCommand("rpginfo,profile", (message, args, bot, scope) => {
 	message.channel.send(embed);
 });
 
+Rpg.AddCommand("rpgtop,leaderboard", (message, args, bot, scope) => {
+	let id = "388764732301246484";
+	let topxp = 1000;
+
+	Object.keys(scope.rpg.players).forEach((player) => {
+		if (scope.rpg.players[player].xp > topxp) {
+			topxp = scope.rpg.players[player].xp;
+			id = player;
+		}
+	});
+
+	let user = bot.users.get(id);
+
+	let embed = new Discord.RichEmbed()
+		.attachFile(new Discord.Attachment("src/img/user.png", "user.png"))
+		.setAuthor(user.username, "attachment://user.png")
+		.setColor(args[1] ? null : message.member.displayHexColor)
+		.setThumbnail(user.avatarURL)
+		.setFooter(`${Math.round(xpr(scope.rpg.players[id].xp))}xp/per message`);
+
+	embed
+		.addField("Gold `$NPN`", scope.rpg.players[id].gold)
+		.addField("Level", scope.rpg.players[id].level)
+		.addField("Experience", Math.round(scope.rpg.players[id].xp));
+
+	message.channel.send(embed);
+});
+
 Rpg.AddCommand("inventory,inv", (message, args, bot, scope) => {
 	let invmap = {};
 
