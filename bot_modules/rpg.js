@@ -3,6 +3,7 @@ const fs = require("fs");
 const af = require("minin-api-additionalfunctions");
 const Command = require("./framework");
 const _util = require("./util");
+const config = require("../src/config.json")
 
 const Util = new _util(null);
 
@@ -86,6 +87,16 @@ Rpg.AddCommand("rpgadmin", (message, args, bot, scope) => {
 	}
 });
 
+Rpg.AddCommand("donate", (message, args, bot, scope) => {
+	if (args.length < 4) return message.reply(`ERROR: missing arguments, try \`${config.prefix}donate @zvava#7623 gold 1\`.`);
+	if (args[1].startsWith("<@") && args[1].endsWith(">")) return message.reply("ERROR: invalid target.")
+	if (!_donatable.includes(args[2])) return message.reply(`ERROR: you can only donate: ${_donatable.join(", ")}.`);
+	if (parseInt(args[3]) === NaN) return message.reply(`ERROR: you can only donate amount of number`);
+	if (parseInt(args[3]) < 0) return message.reply(`ERROR: you cannot donate negative amounts`);
+
+	message.reply(":ok_hand:");
+});
+
 Rpg.AddCommand("rpginfo,profile", (message, args, bot, scope) => {
 	let id = args[1] ? args[1].substring(2, args[1].length-1) : message.author.id;
 
@@ -166,5 +177,9 @@ Rpg.AddCommand("inventory,inv", (message, args, bot, scope) => {
 function xpr(xp) {
 	return Util.csch(xp / 50000) + 1;
 }
+
+let _donatable = [
+	"gold"
+];
 
 module.exports = exports = Rpg;
