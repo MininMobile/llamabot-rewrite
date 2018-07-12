@@ -30,7 +30,7 @@ Rpg.On("init", (scope) => {
 						player.gold += 10;
 					}
 				} else {
-					scope.rpg.players[m.author.id]= {
+					scope.rpg.players[m.author.id] = {
 						xp: 1000,
 						level: 1,
 						gold: 10,
@@ -87,17 +87,21 @@ Rpg.AddCommand("rpgadmin", (message, args, bot, scope) => {
 });
 
 Rpg.AddCommand("rpginfo,profile", (message, args, bot, scope) => {
+	let id = args[1] ? args[1].substring(2, args[1].length-1) : message.author.id;
+
+	let user = bot.users.get(id);
+
 	let embed = new Discord.RichEmbed()
 		.attachFile(new Discord.Attachment("src/img/user.png", "user.png"))
-		.setAuthor(message.author.username, "attachment://user.png")
-		.setColor(message.member.displayHexColor)
-		.setThumbnail(message.author.avatarURL)
-		.setFooter(`${Math.round(xpr(scope.rpg.players[message.author.id].xp))}xp/per message`);
+		.setAuthor(user.username, "attachment://user.png")
+		.setColor(args[1] ? null : message.member.displayHexColor)
+		.setThumbnail(user.avatarURL)
+		.setFooter(`${Math.round(xpr(scope.rpg.players[id].xp))}xp/per message`);
 
 	embed
-		.addField("Gold `$NPN`", scope.rpg.players[message.author.id].gold)
-		.addField("Level", scope.rpg.players[message.author.id].level)
-		.addField("Experience", Math.round(scope.rpg.players[message.author.id].xp));
+		.addField("Gold `$NPN`", scope.rpg.players[id].gold)
+		.addField("Level", scope.rpg.players[id].level)
+		.addField("Experience", Math.round(scope.rpg.players[id].xp));
 
 	message.channel.send(embed);
 });
