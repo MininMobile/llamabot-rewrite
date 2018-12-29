@@ -88,10 +88,18 @@ Mathc.AddCommand("area", (message, args, bot) => {
 	message.channel.send(`${dim}\n${area}`).catch(console.error);
 });
 
+
+/**
+ * validate args
+ *
+ * @param {string[]} a args
+ * @param {number} [expected=2] expected amount of args
+ * @returns boolean
+ */
 function va(a, expected = 2) {
 	let args = a.slice(1, a.length);
 
-	r = true;
+	let r = true;
 
 	if (args.length < expected) r = false;
 	args.forEach((num) => { if (isNaN(parseInt(num))) r = false; });
