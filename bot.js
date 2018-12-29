@@ -109,59 +109,56 @@ bot.on("message", async (message) => {
 		case "status": {
 			let memUsage = (process.memoryUsage().heapUsed/1000/1000/1000).toString();
 
-			let lines = "\n";
+			let lines = [""]; // init with string for top padding
 
-			lines += `${bot.users.size} **Users**`; lines += "\n";
-			lines += `${bot.channels.size} **Channels**`; lines += "\n";
-			lines += `${bot.guilds.size} **Servers**`; lines += "\n";
-			lines += `${process.version} **Node.js Version**`; lines += "\n";
-			lines += `${discord.version} **Discord.js Version**`; lines += "\n";
-			lines += `${memUsage.charAt(0) + memUsage.charAt(1) + memUsage.charAt(2) + memUsage.charAt(3)} GB / 2GB **Memory Usage**`; lines += "\n";
-			lines += `${util.formatSecs(Math.floor(bot.uptime/1000))} **Uptime** (Days:Hours:Mins:Secs)`; lines += "\n";
+			lines.push(`${bot.users.size} **Users**`);
+			lines.push(`${bot.channels.size} **Channels**`);
+			lines.push(`${bot.guilds.size} **Servers**`);
+			lines.push(`${process.version} **Node.js Version**`);
+			lines.push(`${discord.version} **Discord.js Version**`);
+			lines.push(`${memUsage.charAt(0) + memUsage.charAt(1) + memUsage.charAt(2) + memUsage.charAt(3)} GB / 2GB **Memory Usage**`);
+			lines.push(`${util.formatSecs(Math.floor(bot.uptime/1000))} **Uptime** (Days:Hours:Mins:Secs)`);
 		
 			let embed = new discord.RichEmbed()
 				.setAuthor("Statistics", bot.user.avatarURL)
-				.setDescription(lines)
+				.setDescription(lines.join("\n"))
 				.setFooter(`Related Commands: ${config.prefix}servers, ${config.prefix}modules`);
 		
 			message.channel.send(embed);
 			} break;
 
 		case "server":case "serverinfo": {
-			let lines = "\n";
+			let lines = [""]; // init with string for top padding
 
-			lines += `${message.guild.channels.size} **Channels**`; lines += "\n";
-			lines += `${message.guild.channels.findAll("type", "voice").length} **Voice Channels**`; lines += "\n";
-			lines += `${message.guild.channels.findAll("type", "text").length} **Text Channels**`; lines += "\n";
-			lines += `${message.guild.memberCount} **Users**`; lines += "\n";
-			lines += `**ID** ${message.guild.id}`; lines += "\n";
+			lines.push(`${message.guild.channels.size} **Channels**`);
+			lines.push(`${message.guild.channels.findAll("type", "voice").length} **Voice Channels**`);
+			lines.push(`${message.guild.channels.findAll("type", "text").length} **Text Channels**`);
+			lines.push(`${message.guild.memberCount} **Users**`);
+			lines.push(`**ID** ${message.guild.id}`);
 		
 			let embed = new discord.RichEmbed()
 				.setAuthor("Server Statistics", bot.user.avatarURL)
-				.setDescription(lines);
+				.setDescription(lines.join("\n"));
 		
 			message.channel.send(embed);
 			} break;
 
 		case "servers": {
-			let lines = "";
+			let lines = [];
 			let guilds = bot.guilds.array();
 
 			for (let i = 0; i < guilds.length; i++) {
 				if (lines.length < 1900) {
-					lines += `**${guilds[i]}** (${guilds[i].memberCount} Members)`;
-					lines += "\n";
+					lines.push(`**${guilds[i]}** (${guilds[i].memberCount} Members)`);
 				} else {
-					lines += "\n";
-					lines += `*...and ${guilds.length - i} more!*`
-					lines += "\n";
+					lines.push("", `*...and ${guilds.length - i} more!*`);
 					break;
 				}
 			}
 
 			let embed = new discord.RichEmbed()
 				.setAuthor("Servers", bot.user.avatarURL)
-				.setDescription(lines);
+				.setDescription(lines.join("\n"));
 
 			message.channel.send(embed);
 			} break;
@@ -170,14 +167,15 @@ bot.on("message", async (message) => {
 			fs.readdir("bot_modules", "utf8", (err, data) => {
 				if (err) return message.channel.send(`ERROR: ${err.message}`);
 
-				let modules = "\n";
+				let lines = [""]; // init with string for top padding
+
 				data.forEach((file) => {
-					modules += `${file.substring(0, 1).toUpperCase()}${file.substring(1, file.length - 3)}\n`;
+					lines.push(`${file.substring(0, 1).toUpperCase()}${file.substring(1, file.length - 3)}`);
 				});
 
 				let embed = new discord.RichEmbed()
 					.setAuthor("Modules", bot.user.avatarURL)
-					.setDescription(modules);
+					.setDescription(lines.join("\n"));
 
 				message.channel.send(embed);
 			});
