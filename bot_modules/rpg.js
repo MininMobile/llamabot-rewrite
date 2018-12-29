@@ -1,11 +1,10 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const af = require("minin-api-additionalfunctions");
 const Command = require("./framework");
 const _util = require("./util");
 const config = require("../src/config.json")
 
-const Util = new _util(null);
+const util = new _util(null);
 
 const Rpg = new Command();
 
@@ -81,7 +80,7 @@ Rpg.AddCommand("rpgadmin", (message, args, bot, scope) => {
 
 			case "drop":
 				args[2] = args[2].replace("me", "176048981615312897");
-				af.removeArrayObject(scope.rpg.players[args[2]].inventory, args[3]);
+				util.removeArrayItem(scope.rpg.players[args[2]].inventory, args[3]);
 				break;
 		}
 	}
@@ -175,7 +174,7 @@ Rpg.AddCommand("inventory,inv", (message, args, bot, scope) => {
 });
 
 function xpr(xp) {
-	return Util.csch(xp / 50000) + 1;
+	return util.csch(xp / 50000) + 1;
 }
 
 let _donatable = [

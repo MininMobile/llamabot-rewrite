@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
-const af = require("minin-api-additionalfunctions");
+const _util = require("./util");
+const util = new _util();
 const Command = require("./framework");
 
 const rps = new Command();
@@ -8,7 +9,7 @@ rps.AddCommand("rps,rockpaperscissors", (message, args, bot) => {
 	if (args[1] == null || undefined) return message.reply("enter `rock`, `paper`, or `scissors`, BUSTER!");
 
 	const o = ["Rock", "Paper", "Scissors"];
-	let bC = af.randomInt(1, 3) - 1;
+	let bC = util.rand(1, 3) - 1;
 	let uC;
 
 	// get user input

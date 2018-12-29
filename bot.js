@@ -1,6 +1,5 @@
 //// import modules
 const discord = require("discord.js");
-const af = require("minin-api-additionalfunctions");
 const moment = require("moment");
 const fs = require("fs");
 const path = require("path");
@@ -45,13 +44,13 @@ bot.on("ready", async () => {
 			}
 		});
 
-		util.Log(`Connected to ${bot.guilds.size} servers`);
+		util.log(`Connected to ${bot.guilds.size} servers`);
 	});
 });
 
 // guild joined
 bot.on("guildCreate", async (guild) => {
-	
+	// placeholder event
 });
 
 // guild left
@@ -64,7 +63,7 @@ bot.on("message", async (message) => {
 	if (message.author.dmChannel != null) if (message.author.id != "176048981615312897") return;
 	
 	scope.adblock.call("message", { scope: scope, message: message, bot: bot });
-	if (message.author.id == bot.user.id) util.Log(`${message.content} REPLIED ${bot.user.username} IN ${message.guild.name} (${message.guild.id})`);
+	if (message.author.id == bot.user.id) util.log(`${message.content} REPLIED ${bot.user.username} IN ${message.guild.name} (${message.guild.id})`);
 
 	if (message.author.bot) return;
 
@@ -77,7 +76,7 @@ bot.on("message", async (message) => {
 	let cmd = args[0].substring(config.prefix.length).toLowerCase();
 	args[0] = cmd;
 
-	util.Log(`${message.content} FROM ${message.author.username} IN ${message.guild.name} (${message.author.id} SENT IN ${message.guild.id})`);
+	util.log(`${message.content} FROM ${message.author.username} IN ${message.guild.name} (${message.author.id} SENT IN ${message.guild.id})`);
 
 	switch (cmd) {
 		case "ping":
@@ -90,18 +89,18 @@ bot.on("message", async (message) => {
 			break;
 
 		case "help": {
-			let lines = "";
+			let lines = [];
 
-			lines += "[**>>**](https://sites.google.com/site/llamabotwiki/) Commands"; lines += "\n";
-			lines += "[**>>**](https://sites.google.com/site/llamabotwiki/home/features/commands) Wiki"; lines += "\n";
-			lines += "[**>>**](https://discordapp.com/oauth2/authorize?client_id=292320341701689344&scope=bot&permissions=36727808) Invite"; lines += "\n";
-			lines += "[**>>**](https://trello.com/b/9GCQPaPz/llama-bot-updates) Trello"; lines += "\n";
-			lines += "[**>>**](https://discord.gg/BBax4jk) Support Server"; lines += "\n";
-			lines += "[**>>**](https://sites.google.com/site/llamabotwiki/tos) Terms of Service"; lines += "\n";
+			lines.push("[**>>**](https://sites.google.com/view/llamabotwiki/features/commands) Commands");
+			lines.push("[**>>**](https://sites.google.com/view/llamabotwiki) Wiki");
+			lines.push("[**>>**](https://discordapp.com/oauth2/authorize?client_id=292320341701689344&scope=bot&permissions=439675974) Invite");
+			lines.push("[**>>**](https://trello.com/b/9GCQPaPz/llama-bot-updates) Trello");
+			lines.push("[**>>**](https://discord.gg/BBax4jk) Support Server");
+			lines.push("[**>>**](https://sites.google.com/view/llamabotwiki/tos) Terms of Service");
 
 			let embed = new discord.RichEmbed()
 				.setAuthor(bot.user.username, bot.user.avatarURL)
-				.setDescription(lines)
+				.setDescription(lines.join("\n"))
 				.setFooter(`serving ${bot.guilds.size} servers`);
 
 			message.channel.send(embed);
@@ -118,7 +117,7 @@ bot.on("message", async (message) => {
 			lines += `${process.version} **Node.js Version**`; lines += "\n";
 			lines += `${discord.version} **Discord.js Version**`; lines += "\n";
 			lines += `${memUsage.charAt(0) + memUsage.charAt(1) + memUsage.charAt(2) + memUsage.charAt(3)} GB / 2GB **Memory Usage**`; lines += "\n";
-			lines += `${af.formatSecs(Math.floor(bot.uptime/1000))} **Uptime** (Days:Hours:Mins:Secs)`; lines += "\n";
+			lines += `${util.formatSecs(Math.floor(bot.uptime/1000))} **Uptime** (Days:Hours:Mins:Secs)`; lines += "\n";
 		
 			let embed = new discord.RichEmbed()
 				.setAuthor("Statistics", bot.user.avatarURL)

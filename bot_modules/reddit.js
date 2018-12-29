@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const Fetch = require("fetch-subreddit");
-const af = require("minin-api-additionalfunctions");
+const _util = require("./util");
+const util = new _util();
 const Command = require("./framework");
 
 const Reddit = new Command();
@@ -11,7 +12,7 @@ Reddit.AddCommand("meme,meirl,me_irl", (message, args, bot) => {
 
 		let meme = "fetchmeme";
 		while (!_extensions.includes(meme.substr(meme.length-4))) {
-			meme = memes[af.randomInt(0, memes.length-1)];
+			meme = memes[util.rand(0, memes.length-1)];
 		}
 		
 		let embed = new Discord.RichEmbed()
@@ -34,7 +35,7 @@ Reddit.AddCommand("r,reddit", (message, args, bot) => {
 		let post = "fetchpost";
 		let count = 0;
 		while (!_extensions.includes(post.substr(post.length-4)) && count < 15) {
-			post = posts[af.randomInt(0, posts.length-1)];
+			post = posts[util.rand(0, posts.length-1)];
 			count++;
 		}
 

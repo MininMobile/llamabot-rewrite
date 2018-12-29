@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
-const af = require("minin-api-additionalfunctions");
+const _util = require("./util");
+const util = new _util();
 const Command = require("./framework");
 
 const Mocking = new Command();
@@ -33,7 +34,7 @@ Mocking.AddCommand("toxic,insult", (message, args, bot) => {
 		"no suck, suck is dead"
 	];
 
-	message.channel.send(r[af.randomInt(0, r.length)]);
+	message.channel.send(r[util.rand(0, r.length)]);
 });
 
 module.exports = exports = Mocking;

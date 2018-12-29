@@ -1,5 +1,6 @@
-const af = require("minin-api-additionalfunctions");
 const Discord = require("discord.js");
+const _util = require("./util");
+const util = new _util();
 const Command = require("./framework");
 
 const Gambling = new Command();
@@ -20,7 +21,7 @@ Gambling.AddCommand("8ball,truth", (message, args, bot) => {
 		"Maybe..."
 	];
 
-	answer = af.randomInt(0, answers.length);
+	answer = util.rand(0, answers.length);
 	message.channel.send(answers[answer]);
 });
 
@@ -33,7 +34,7 @@ Gambling.AddCommand("roll", (message, args, bot) => {
 		}
 	}
 
-	let roll = af.randomInt(1, sides);
+	let roll = util.rand(1, sides);
 	message.channel.send(`You rolled a ${roll}!`);
 });
 
@@ -48,7 +49,7 @@ Gambling.AddCommand("flip", (message, args, bot) => {
 		"tails"
 	];
 
-	let side = af.randomInt(1, 2);
+	let side = util.rand(1, 2);
 
 	let embed = new Discord.RichEmbed()
 		.attachFile(new Discord.Attachment(sides[side-1], "coin.png"))

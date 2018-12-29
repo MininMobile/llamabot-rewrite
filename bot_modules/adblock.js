@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const af = require("minin-api-additionalfunctions");
-const Util = require("./util");
+const _util = require("./util");
+const util = new _util();
 const Command = require("./framework");
 const config = require("../src/config.json");
 
@@ -62,7 +62,7 @@ Adblock.AddCommand("adblock", (message, args, bot, scope) => {
 		message.reply("saved JSON list for adblock.");
 	} else {
 		if (scope.adblock.guilds.includes(message.guild.id)) {
-			af.removeArrayObject(scope.adblock.guilds, message.guild.id);
+			util.removeArrayItem(scope.adblock.guilds, message.guild.id);
 			
 			message.channel.send(`Adblock disabled, type \`${config.prefix}${args[0]}\` to enable it.`);
 			scope.adblock.call("save", scope);
