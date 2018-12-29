@@ -1,9 +1,10 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const _util = require("./util");
-const util = new _util();
 const Command = require("./framework");
 const config = require("../src/config.json");
+
+const util = new _util(null);
 
 const Adblock = new Command();
 
@@ -21,7 +22,7 @@ Adblock.On("init", (scope) => {
 						s.message.author.id != s.bot.user.id) {
 
 						if (s.message.deletable && s.message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-							s.message.delete();
+							s.message.delete().catch((e) => s.message.channel.send(`ADBLOCK DELETION ERROR: ${e}`));
 							console.log(`:: BLOCKED ${s.message.content}`);
 						} else {
 							s.message.channel.send(`I am missing \`MANAGE_MESSAGES\` permissions for adblock;\nIf you did not intend to enable adblock, type \`${config.prefix}adblock\`.`).catch(console.error);

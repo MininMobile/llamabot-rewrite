@@ -8,7 +8,7 @@ Say.AddCommand("say", (message, args, bot) => {
 
 	message.channel.send(args.join(" ")).catch(console.error);
 
-	if (message.guild.me.hasPermission("MANAGE_MESSAGES")) message.delete();
+	if (message.guild.me.hasPermission("MANAGE_MESSAGES")) message.delete().catch((e) => s.message.channel.send(`DELETE ERROR: ${e}`));
 });
 
 Say.AddCommand("embed", (message, args, bot) => {
@@ -21,7 +21,7 @@ Say.AddCommand("embed", (message, args, bot) => {
 
 	message.channel.send(embed).catch(console.error);
 
-	if (message.guild.me.hasPermission("MANAGE_MESSAGES")) message.delete();
+	if (message.guild.me.hasPermission("MANAGE_MESSAGES")) message.delete().catch((e) => s.message.channel.send(`DELETE ERROR: ${e}`));
 });
 
 Say.AddCommand("cowsay", (message, args, bot) => {

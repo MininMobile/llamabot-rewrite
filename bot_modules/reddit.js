@@ -1,8 +1,9 @@
 const Discord = require("discord.js");
 const Fetch = require("fetch-subreddit");
 const _util = require("./util");
-const util = new _util();
 const Command = require("./framework");
+
+const util = new _util(null);
 
 const Reddit = new Command();
 

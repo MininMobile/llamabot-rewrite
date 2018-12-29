@@ -1,7 +1,8 @@
 const Discord = require("discord.js");
 const _util = require("./util");
-const util = new _util();
 const Command = require("./framework");
+
+const util = new _util(null);
 
 const Mocking = new Command();
 

@@ -151,8 +151,8 @@ bot.on("message", async (message) => {
 			let lines = [""]; // init with string for top padding
 
 			lines.push(`${message.guild.channels.size} **Channels**`);
-			lines.push(`${message.guild.channels.findAll("type", "voice").length} **Voice Channels**`);
-			lines.push(`${message.guild.channels.findAll("type", "text").length} **Text Channels**`);
+			lines.push(`${message.guild.channels.filter(c => c.type == "voice").size} **Voice Channels**`);
+			lines.push(`${message.guild.channels.filter(c => c.type == "text").size} **Text Channels**`);
 			lines.push(`${message.guild.memberCount} **Users**`);
 			lines.push(`**ID** ${message.guild.id}`);
 		
