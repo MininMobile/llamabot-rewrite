@@ -103,7 +103,7 @@ bot.on("message", async (message) => {
 				.setDescription(lines.join("\n"))
 				.setFooter(`serving ${bot.guilds.size} servers`);
 
-			message.channel.send(embed);
+			message.channel.send(embed).catch(console.error);
 		} break;
 
 		case "status": {
@@ -124,7 +124,7 @@ bot.on("message", async (message) => {
 				.setDescription(lines.join("\n"))
 				.setFooter(`see also; ${config.prefix}server, ${config.prefix}info, ${config.prefix}modules`);
 		
-			message.channel.send(embed);
+			message.channel.send(embed).catch(console.error);
 		} break;
 
 		case "info":case "userinfo": {
@@ -144,7 +144,7 @@ bot.on("message", async (message) => {
 				.setDescription(lines.join("\n"))
 				.setFooter(`see also; ${config.prefix}server, ${config.prefix}status, ${config.prefix}modules`);
 		
-			message.channel.send(embed);
+			message.channel.send(embed).catch(console.error);
 		} break;
 
 		case "server":case "serverinfo": {
@@ -161,7 +161,7 @@ bot.on("message", async (message) => {
 				.setDescription(lines.join("\n"))
 				.setFooter(`see also; ${config.prefix}status, ${config.prefix}info, ${config.prefix}modules`);
 		
-			message.channel.send(embed);
+			message.channel.send(embed).catch(console.error);
 		} break;
 
 		case "servers": {
@@ -183,12 +183,12 @@ bot.on("message", async (message) => {
 				.setDescription(lines.join("\n"))
 				.setFooter(`see also; ${config.prefix}modules`);
 
-			message.channel.send(embed);
+			message.channel.send(embed).catch(console.error);
 		} break;
 
 		case "modules": {
 			fs.readdir("bot_modules", "utf8", (err, data) => {
-				if (err) return message.channel.send(`ERROR: ${err.message}`);
+				if (err) return message.channel.send(`ERROR: ${err.message}`).catch(console.error);
 
 				let lines = [""]; // init with string for top padding
 
@@ -201,7 +201,7 @@ bot.on("message", async (message) => {
 					.setDescription(lines.join("\n"))
 					.setFooter(`total of ${data.length} modules`);
 
-			message.channel.send(embed);
+			message.channel.send(embed).catch(console.error);
 			});
 		} break;
 
@@ -223,14 +223,14 @@ bot.on("message", async (message) => {
 				.addField(":inbox_tray: Input", "```javascript\n" + code + "```")
 				.addField(":outbox_tray: Output", "```\n" + result + "```");
 			
-			message.author.send(embed).then(() => { message.react("👌") });
+			message.author.send(embed).then(() => { message.react("👌") }).catch(console.error);
 		} break;
 
 		default:
 			if (Object.keys(commands).includes(cmd)) {
 				commands[cmd](message, args, bot, scope);
 			} else if (Object.keys(scope.usrcmd.commands[message.guild.id]).includes(cmd)) {
-				message.channel.send(scope.usrcmd.commands[message.guild.id][cmd]);
+				message.channel.send(scope.usrcmd.commands[message.guild.id][cmd]).catch(console.error);
 			}
 	}
 });

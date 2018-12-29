@@ -15,7 +15,7 @@ Mocking.AddCommand("chkn,chicken,mock", (message, args, bot) => {
 		let letter = words[i]; result += i % 2 == 0 ? letter.toUpperCase() : letter;
 	}
 
-	message.channel.send(result, { file: "src/img/cock.png" });
+	message.channel.send(result, { file: "src/img/cock.png" }).catch(console.error);
 });
 
 Mocking.AddCommand("toxic,insult", (message, args, bot) => {
@@ -34,7 +34,7 @@ Mocking.AddCommand("toxic,insult", (message, args, bot) => {
 		"no suck, suck is dead"
 	];
 
-	message.channel.send(r[util.rand(0, r.length)]);
+	message.channel.send(r[util.rand(0, r.length)]).catch(console.error);
 });
 
 module.exports = exports = Mocking;

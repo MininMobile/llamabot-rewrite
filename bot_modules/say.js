@@ -6,7 +6,7 @@ const Say = new Command();
 Say.AddCommand("say", (message, args, bot) => {
 	args.shift();
 
-	message.channel.send(args.join(" "));
+	message.channel.send(args.join(" ")).catch(console.error);
 
 	if (message.guild.me.hasPermission("MANAGE_MESSAGES")) message.delete();
 });
@@ -19,7 +19,7 @@ Say.AddCommand("embed", (message, args, bot) => {
 		.setAuthor(message.author.username, message.author.avatarURL)
 		.setDescription(words);
 
-	message.channel.send(embed);
+	message.channel.send(embed).catch(console.error);
 
 	if (message.guild.me.hasPermission("MANAGE_MESSAGES")) message.delete();
 });

@@ -19,9 +19,9 @@ Reddit.AddCommand("meme,meirl,me_irl", (message, args, bot) => {
 			.setImage(meme)
 			.setFooter("meme from r/me_irl");
 
-		message.channel.send(embed);
+		message.channel.send(embed).catch(console.error);
 	}).catch((e) => {
-		message.channel.send(`ERROR: ${e}`);
+		message.channel.send(`ERROR: ${e}`).catch(console.error);
 	});
 });
 
@@ -52,9 +52,9 @@ Reddit.AddCommand("r,reddit", (message, args, bot) => {
 				.setFooter(`post from r/${words}`);
 		}
 
-		message.channel.send(embed);
+		message.channel.send(embed).catch(console.error);
 	}).catch((e) => {
-		message.channel.send(`ERROR: ${e} (either that or the subreddit doesn't exist)`);
+		message.channel.send(`ERROR: ${e} (either that or the subreddit doesn't exist)`).catch(console.error);
 	});
 });
 

@@ -14,9 +14,9 @@ Webutil.AddCommand("online", (message, args, bot) => {
 
 		IsOnline(words).then((res) => {
 			if (res) {
-				message.channel.send(`:satellite: ${words} is online!`);
+				message.channel.send(`:satellite: ${words} is online!`).catch(console.error);
 			} else {
-				message.channel.send(`:satellite_orbital: ${words} is offline!`);
+				message.channel.send(`:satellite_orbital: ${words} is offline!`).catch(console.error);
 			}
 		});
 	} else {
@@ -36,7 +36,7 @@ Webutil.AddCommand("google,search", (message, args, bot) => {
 			q: words,
 			start: 1
 		}, (err, res) => {
-			if (err) return message.channel.send(`ERROR: ${e}`);
+			if (err) return message.channel.send(`ERROR: ${e}`).catch(console.error);
 
 			try {
 				GoogleImageSearch.search(words).then((images) => {
@@ -53,10 +53,10 @@ Webutil.AddCommand("google,search", (message, args, bot) => {
 							.setThumbnail(images[0].url);
 					}
 		
-					message.channel.send(embed);
+					message.channel.send(embed).catch(console.error);
 				});
 			} catch (e) {
-				message.channel.send(`ERROR: ${e}`);
+				message.channel.send(`ERROR: ${e}`).catch(console.error);
 			}
 		});
 	} else {

@@ -22,7 +22,7 @@ Gambling.AddCommand("8ball,truth", (message, args, bot) => {
 	];
 
 	answer = util.rand(0, answers.length);
-	message.channel.send(answers[answer]);
+	message.channel.send(answers[answer]).catch(console.error);
 });
 
 Gambling.AddCommand("roll", (message, args, bot) => {
@@ -35,7 +35,7 @@ Gambling.AddCommand("roll", (message, args, bot) => {
 	}
 
 	let roll = util.rand(1, sides);
-	message.channel.send(`You rolled a ${roll}!`);
+	message.channel.send(`You rolled a ${roll}!`).catch(console.error);
 });
 
 Gambling.AddCommand("flip", (message, args, bot) => {
@@ -56,7 +56,7 @@ Gambling.AddCommand("flip", (message, args, bot) => {
 		.setDescription(`You've flipped a **${sideNames[side-1]}**!`)
 		.setImage("attachment://coin.png");
 
-	message.channel.send(embed);
+	message.channel.send(embed).catch(console.error);
 });
 
 module.exports = exports = Gambling;

@@ -14,7 +14,7 @@ Textfx.AddCommand("big", (message, args, bot) => {
 	Figlet(words, (err, big) => {
 		if (err) return message.reply(err);
 
-		message.channel.send("```" + big + "```");
+		message.channel.send("```" + big + "```").catch(console.error);
 	});
 });
 
@@ -22,35 +22,35 @@ Textfx.AddCommand("glitch", (message, args, bot) => {
 	args.shift();
 	let words = args.join(" ");
 
-	message.channel.send(luni.tools.creepify.encode(words));
+	message.channel.send(luni.tools.creepify.encode(words)).catch(console.error);
 });
 
 Textfx.AddCommand("tiny", (message, args, bot) => {
 	args.shift();
 	let words = args.join(" ");
 
-	message.channel.send(luni.tools.tiny.encode(words));
+	message.channel.send(luni.tools.tiny.encode(words)).catch(console.error);
 });
 
 Textfx.AddCommand("bubble", (message, args, bot) => {
 	args.shift();
 	let words = args.join(" ");
 
-	message.channel.send(luni.tools.bubbles.encode(words));
+	message.channel.send(luni.tools.bubbles.encode(words)).catch(console.error);
 });
 
 Textfx.AddCommand("square", (message, args, bot) => {
 	args.shift();
 	let words = args.join(" ");
 
-	message.channel.send(luni.tools.roundsquares.encode(words));
+	message.channel.send(luni.tools.roundsquares.encode(words)).catch(console.error);
 });
 
 Textfx.AddCommand("creepify", (message, args, bot) => {
 	args.shift();
 	let words = args.join(" ");
 
-	message.channel.send(luni.tools.bent.encode(words));
+	message.channel.send(luni.tools.bent.encode(words)).catch(console.error);
 });
 
 module.exports = exports = Textfx;

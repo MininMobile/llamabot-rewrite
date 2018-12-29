@@ -42,7 +42,7 @@ Commands.AddCommand("command", (message, args, bot, scope) => {
 		if (args.length == 1 && scope.usrcmd.commands[message.guild.id][args[0]]) {
 			delete scope.usrcmd.commands[message.guild.id][args[0]];
 
-			message.channel.send(`Command removed, you can still add it back again!`);
+			message.channel.send(`Command removed, you can still add it back again!`).catch(console.error);
 			scope.usrcmd.call("save", scope);
 		} else if (args.length > 1) {
 			scope.usrcmd.commands[message.guild.id][args[0]] = args.slice(1, args.length).join(" ");

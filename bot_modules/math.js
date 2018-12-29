@@ -13,7 +13,7 @@ Mathc.AddCommand("add", (message, args, bot) => {
 
 	args.forEach((num) => { r += parseInt(num); });
 
-	message.channel.send(r);
+	message.channel.send(r).catch(console.error);
 });
 
 Mathc.AddCommand("subtract,sub,min", (message, args, bot) => {
@@ -27,7 +27,7 @@ Mathc.AddCommand("subtract,sub,min", (message, args, bot) => {
 
 	args.forEach((num) => { r -= parseInt(num); });
 
-	message.channel.send(r);
+	message.channel.send(r).catch(console.error);
 });
 
 Mathc.AddCommand("multiply,mult", (message, args, bot) => {
@@ -41,7 +41,7 @@ Mathc.AddCommand("multiply,mult", (message, args, bot) => {
 
 	args.forEach((num) => { r *= parseInt(num); });
 
-	message.channel.send(r);
+	message.channel.send(r).catch(console.error);
 });
 
 Mathc.AddCommand("divide,div", (message, args, bot) => {
@@ -55,13 +55,13 @@ Mathc.AddCommand("divide,div", (message, args, bot) => {
 
 	args.forEach((num) => { r /= parseInt(num); });
 
-	message.channel.send(r);
+	message.channel.send(r).catch(console.error);
 });
 
 Mathc.AddCommand("squareroot,sqrt,sq", (message, args, bot) => {
 	if (!va(args, 1)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 36\``);
 
-	message.channel.send(Math.sqrt(parseInt(args[1])));
+	message.channel.send(Math.sqrt(parseInt(args[1]))).catch(console.error);
 });
 
 Mathc.AddCommand("perimeter,peri", (message, args, bot) => {
@@ -73,7 +73,7 @@ Mathc.AddCommand("perimeter,peri", (message, args, bot) => {
 	let dim = `**Dimensions** ${num1}cm x ${num2}cm`
 	let peri = `**Perimeter** ${(num1 + num2) * 2}cm`
 
-	message.channel.send(`${dim}\n${peri}`);
+	message.channel.send(`${dim}\n${peri}`).catch(console.error);
 });
 
 Mathc.AddCommand("area", (message, args, bot) => {
@@ -85,7 +85,7 @@ Mathc.AddCommand("area", (message, args, bot) => {
 	let dim = `**Dimensions** ${num1}cm x ${num2}cm`
 	let area = `**Area** ${num1 * num2}cm²`
 
-	message.channel.send(`${dim}\n${area}`);
+	message.channel.send(`${dim}\n${area}`).catch(console.error);
 });
 
 function va(a, expected = 2) {

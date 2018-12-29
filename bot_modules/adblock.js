@@ -24,7 +24,7 @@ Adblock.On("init", (scope) => {
 							s.message.delete();
 							console.log(`:: BLOCKED ${s.message.content}`);
 						} else {
-							s.message.channel.send(`I am missing \`MANAGE_MESSAGES\` permissions for adblock;\nIf you did not intend to enable adblock, type \`${config.prefix}adblock\`.`);
+							s.message.channel.send(`I am missing \`MANAGE_MESSAGES\` permissions for adblock;\nIf you did not intend to enable adblock, type \`${config.prefix}adblock\`.`).catch(console.error);
 							console.log(`:: FAILED BLOCK ${s.message.content}`);
 						}
 					}
@@ -64,12 +64,12 @@ Adblock.AddCommand("adblock", (message, args, bot, scope) => {
 		if (scope.adblock.guilds.includes(message.guild.id)) {
 			util.removeArrayItem(scope.adblock.guilds, message.guild.id);
 			
-			message.channel.send(`Adblock disabled, type \`${config.prefix}${args[0]}\` to enable it.`);
+			message.channel.send(`Adblock disabled, type \`${config.prefix}${args[0]}\` to enable it.`).catch(console.error);
 			scope.adblock.call("save", scope);
 		} else {
 			scope.adblock.guilds.push(message.guild.id);
 			
-			message.channel.send(`Adblock enabled, type \`${config.prefix}${args[0]}\` to disable it.`);
+			message.channel.send(`Adblock enabled, type \`${config.prefix}${args[0]}\` to disable it.`).catch(console.error);
 			scope.adblock.call("save", scope);
 		}
 	}

@@ -113,7 +113,7 @@ Rpg.AddCommand("rpginfo,profile", (message, args, bot, scope) => {
 		.addField("Level", scope.rpg.players[id].level)
 		.addField("Experience", Math.round(scope.rpg.players[id].xp));
 
-	message.channel.send(embed);
+	message.channel.send(embed).catch(console.error);
 });
 
 Rpg.AddCommand("rpgtop,leaderboard", (message, args, bot, scope) => {
@@ -141,7 +141,7 @@ Rpg.AddCommand("rpgtop,leaderboard", (message, args, bot, scope) => {
 		.addField("Level", scope.rpg.players[id].level)
 		.addField("Experience", Math.round(scope.rpg.players[id].xp));
 
-	message.channel.send(embed);
+	message.channel.send(embed).catch(console.error);
 });
 
 Rpg.AddCommand("inventory,inv", (message, args, bot, scope) => {
@@ -170,7 +170,7 @@ Rpg.AddCommand("inventory,inv", (message, args, bot, scope) => {
 		.setDescription(lines)
 		.setFooter(`total ${scope.rpg.players[message.author.id].inventory.length} items`);
 
-	message.channel.send(embed);
+	message.channel.send(embed).catch(console.error);
 });
 
 function xpr(xp) {
