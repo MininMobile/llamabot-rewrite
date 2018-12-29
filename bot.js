@@ -79,14 +79,14 @@ bot.on("message", async (message) => {
 	util.log(`${message.content} FROM ${message.author.username} IN ${message.guild.name} (${message.author.id} SENT IN ${message.guild.id})`);
 
 	switch (cmd) {
-		case "ping":
+		case "ping": {
 			message.channel.send(":ping_pong: Pinging...").then((m) => {
 				let botPing = `**Bot** ${m.createdTimestamp - message.createdTimestamp}ms`;
 				let apiPing = `**API** ${Math.round(bot.ping)}ms`;
 
 				m.edit(`:ping_pong: ${botPing} ${apiPing}`);
 			});
-			break;
+		} break;
 
 		case "help": {
 			let lines = [];
@@ -104,7 +104,7 @@ bot.on("message", async (message) => {
 				.setFooter(`serving ${bot.guilds.size} servers`);
 
 			message.channel.send(embed);
-			} break;
+		} break;
 
 		case "status": {
 			let memUsage = (process.memoryUsage().heapUsed/1000/1000/1000).toString();
@@ -117,15 +117,35 @@ bot.on("message", async (message) => {
 			lines.push(`${process.version} **Node.js Version**`);
 			lines.push(`${discord.version} **Discord.js Version**`);
 			lines.push(`${memUsage.charAt(0) + memUsage.charAt(1) + memUsage.charAt(2) + memUsage.charAt(3)} GB / 2GB **Memory Usage**`);
-			lines.push(`${util.formatSecs(Math.floor(bot.uptime/1000))} **Uptime** (Days:Hours:Mins:Secs)`);
+			lines.push(`${util.formatSecs(Math.floor(bot.uptime/1000))} **Uptime** (days:hours:mins:secs)`);
 		
 			let embed = new discord.RichEmbed()
 				.setAuthor("Statistics", bot.user.avatarURL)
 				.setDescription(lines.join("\n"))
-				.setFooter(`Related Commands: ${config.prefix}servers, ${config.prefix}modules`);
+				.setFooter(`see also; ${config.prefix}server, ${config.prefix}info, ${config.prefix}modules`);
 		
 			message.channel.send(embed);
-			} break;
+		} break;
+
+		case "info":case "userinfo": {
+			let lines = [""]; // init with string for top padding
+
+			                                  lines.push(`**ID** ${message.author.id}`);
+			if (message.author.bot)           lines.push(`They are a **bot**`);
+			if (message.member.nickname)      lines.push(`**Nickname** ${message.member.nickname}`);
+			                                  lines.push(`**Currently** ${message.author.presence.status}`);
+			if (message.author.presence.game) lines.push(`**Playing** ${message.author.presence.game.name}`);
+			                                  lines.push(`**Roles** \`${message.member.roles.map(r => r.name).reverse().join("`, `")}\``);
+			                                  lines.push(`**Server Join Date** ${message.member.joinedAt.toDateString()}`);
+			                                  lines.push(`**Discord Join Date** ${message.author.createdAt.toDateString()}`);
+		
+			let embed = new discord.RichEmbed()
+				.setAuthor("User Statistics", bot.user.avatarURL)
+				.setDescription(lines.join("\n"))
+				.setFooter(`see also; ${config.prefix}server, ${config.prefix}status, ${config.prefix}modules`);
+		
+			message.channel.send(embed);
+		} break;
 
 		case "server":case "serverinfo": {
 			let lines = [""]; // init with string for top padding
@@ -138,14 +158,16 @@ bot.on("message", async (message) => {
 		
 			let embed = new discord.RichEmbed()
 				.setAuthor("Server Statistics", bot.user.avatarURL)
-				.setDescription(lines.join("\n"));
+				.setDescription(lines.join("\n"))
+				.setFooter(`see also; ${config.prefix}status, ${config.prefix}info, ${config.prefix}modules`);
 		
 			message.channel.send(embed);
-			} break;
+		} break;
 
 		case "servers": {
-			let lines = [];
 			let guilds = bot.guilds.array();
+
+			let lines = [];
 
 			for (let i = 0; i < guilds.length; i++) {
 				if (lines.length < 1900) {
@@ -158,12 +180,13 @@ bot.on("message", async (message) => {
 
 			let embed = new discord.RichEmbed()
 				.setAuthor("Servers", bot.user.avatarURL)
-				.setDescription(lines.join("\n"));
+				.setDescription(lines.join("\n"))
+				.setFooter(`see also; ${config.prefix}modules`);
 
 			message.channel.send(embed);
-			} break;
+		} break;
 
-		case "modules":
+		case "modules": {
 			fs.readdir("bot_modules", "utf8", (err, data) => {
 				if (err) return message.channel.send(`ERROR: ${err.message}`);
 
@@ -175,13 +198,14 @@ bot.on("message", async (message) => {
 
 				let embed = new discord.RichEmbed()
 					.setAuthor("Modules", bot.user.avatarURL)
-					.setDescription(lines.join("\n"));
+					.setDescription(lines.join("\n"))
+					.setFooter(`total of ${data.length} modules`);
 
-				message.channel.send(embed);
+			message.channel.send(embed);
 			});
-			break;
+		} break;
 
-		case "eval":
+		case "eval": {
 			if (message.author.id !== "176048981615312897") return;
 
 			args.shift();
@@ -200,7 +224,7 @@ bot.on("message", async (message) => {
 				.addField(":outbox_tray: Output", "```\n" + result + "```");
 			
 			message.author.send(embed).then(() => { message.react("👌") });
-			break;
+		} break;
 
 		default:
 			if (Object.keys(commands).includes(cmd)) {
