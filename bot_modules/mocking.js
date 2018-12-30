@@ -26,13 +26,15 @@ Mocking.AddCommand("toxic,insult", (message, args, bot) => {
 		"lol gay",
 		"kiss your sister",
 		"u have the big gay",
-		"no u",
+		"\\*inhale\\* young male",
 		"consider death",
 		"man fuck you",
 		"suck my dick",
 		"inhale my dong",
 		"y-y-your mum :sunglasses:",
-		"no suck, suck is dead"
+		"no suck, suck is dead",
+		"no despacito for you",
+		"how does this homo make gay sex time"
 	];
 
 	message.channel.send(r[util.rand(0, r.length)]).catch(console.error);

@@ -140,6 +140,15 @@ bot.on("message", async (message) => {
 			message.channel.send(embed).catch(console.error);
 		} break;
 
+		case "avatar": {
+			let embed = new discord.RichEmbed()
+				.setDescription(message.author.avatarURL)
+				.setImage(message.author.avatarURL)
+				.setFooter(`${message.member.nickname || message.author.username}'s avatar`);
+
+			message.channel.send(embed).catch(console.error);
+		} break;
+
 		case "info":case "userinfo": {
 			let lines = [""]; // init with string for top padding
 
