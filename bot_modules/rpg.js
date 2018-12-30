@@ -87,7 +87,7 @@ Rpg.AddCommand("rpgadmin", (message, args, bot, scope) => {
 });
 
 Rpg.AddCommand("donate", (message, args, bot, scope) => {
-	if (args.length < 4) return message.reply(`ERROR: missing arguments, try \`${config.prefix}donate @zvava#7623 gold 1\`.`);
+	if (args.length < 4) return message.reply(`ERROR: missing arguments, try something like \`${config.prefix}donate @zvava#9999 gold 1\`.`);
 	if (args[1].startsWith("<@") && args[1].endsWith(">")) return message.reply("ERROR: invalid target.")
 	if (!_donatable.includes(args[2])) return message.reply(`ERROR: you can only donate: ${_donatable.join(", ")}.`);
 	if (parseInt(args[3]) === NaN) return message.reply(`ERROR: you can only donate amount of number`);

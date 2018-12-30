@@ -25,7 +25,7 @@ const util = new _util(moment);
 bot.on("ready", async () => {
 	scope.bot = bot;
 
-	bot.user.setGame(`type ${config.prefix}help`);
+	bot.user.setActivity(`type ${config.prefix}help`).catch(console.error);
 
 	fs.readdir("bot_modules", "utf8", (err, data) => {
 		if (err) throw new Error(err);
@@ -60,23 +60,36 @@ bot.on("guildDelete", async (guild) => {
 
 // message recieved
 bot.on("message", async (message) => {
-	if (message.author.dmChannel != null) if (message.author.id != "176048981615312897") return;
-	
-	scope.adblock.call("message", { scope: scope, message: message, bot: bot });
-	if (message.author.id == bot.user.id) util.log(`${message.content} REPLIED ${bot.user.username} IN ${message.guild.name} (${message.guild.id})`);
+	// don't reply in dms
+	if ((message.channel.type == "dm") && (message.author.id != "176048981615312897")) {
+		message.author.send("Executing commands inside of DMs are not supported.").catch(() => {});
+		util.log(`${message.author.username} SENT ${message.content} IN DMS (${message.author.id} SENT IN DMS)`);
+		return;
+	}
 
+	// adblock
+	scope.adblock.call("message", { scope: scope, message: message, bot: bot });
+
+	// log reply
+	if (message.author.id == bot.user.id) util.log(`${message.content} REPLIED ${bot.user.username} IN ${message.guild.name} (BOT REPLIED IN ${message.guild.id})`);
+
+	// don't reply to bots
 	if (message.author.bot) return;
 
+	// ignore messages w/o prefix
+	if (!message.content.startsWith(config.prefix)) return;
+
+	// setup scope
 	scope.message = message;
 	scope.rpg.call("message", scope);
 
-	if (!message.content.startsWith(config.prefix)) return;
-
+	// setup args
 	let args = message.content.split(" ");
 	let cmd = args[0].substring(config.prefix.length).toLowerCase();
 	args[0] = cmd;
 
-	util.log(`${message.content} FROM ${message.author.username} IN ${message.guild.name} (${message.author.id} SENT IN ${message.guild.id})`);
+	// log command
+	util.log(`${message.author.username} COMMANDED ${message.content} IN ${message.guild.name} (${message.author.id} COMMANDED IN ${message.guild.id})`);
 
 	switch (cmd) {
 		case "ping": {
@@ -84,8 +97,8 @@ bot.on("message", async (message) => {
 				let botPing = `**Bot** ${m.createdTimestamp - message.createdTimestamp}ms`;
 				let apiPing = `**API** ${Math.round(bot.ping)}ms`;
 
-				m.edit(`:ping_pong: ${botPing} ${apiPing}`);
-			});
+				m.edit(`:ping_pong: ${botPing} ${apiPing}`).catch(console.log);
+			}).catch(console.log);
 		} break;
 
 		case "help": {
@@ -140,7 +153,8 @@ bot.on("message", async (message) => {
 			                                  lines.push(`**Discord Join Date** ${message.author.createdAt.toDateString()}`);
 		
 			let embed = new discord.RichEmbed()
-				.setAuthor("User Statistics", bot.user.avatarURL)
+				.setAuthor(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+				.setColor(message.member.displayColor)
 				.setDescription(lines.join("\n"))
 				.setFooter(`see also; ${config.prefix}server, ${config.prefix}status, ${config.prefix}modules`);
 		
@@ -223,15 +237,16 @@ bot.on("message", async (message) => {
 				.addField(":inbox_tray: Input", "```javascript\n" + code + "```")
 				.addField(":outbox_tray: Output", "```\n" + result + "```");
 			
-			message.author.send(embed).then(() => { message.react("👌") }).catch(console.error);
+			message.author.send(embed).then(() => { message.react("👌").catch(console.log) }).catch(console.error);
 		} break;
 
-		default:
+		default: {
 			if (Object.keys(commands).includes(cmd)) {
 				commands[cmd](message, args, bot, scope);
 			} else if (Object.keys(scope.usrcmd.commands[message.guild.id]).includes(cmd)) {
 				message.channel.send(scope.usrcmd.commands[message.guild.id][cmd]).catch(console.error);
 			}
+		}
 	}
 });
 

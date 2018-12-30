@@ -16,7 +16,8 @@ Say.AddCommand("embed", (message, args, bot) => {
 	let words = args.join(" ");
 
 	let embed = new Discord.RichEmbed()
-		.setAuthor(message.author.username, message.author.avatarURL)
+		.setAuthor(message.member.nickname || message.author.username, message.author.avatarURL)
+		.setColor(message.member.displayColor)
 		.setDescription(words);
 
 	message.channel.send(embed).catch(console.error);
