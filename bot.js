@@ -272,7 +272,7 @@ bot.on("message", async (message) => {
 });
 
 //// autosave
-const autosave = setInterval(function() {
+const autosave = setInterval(() => {
 	scope.adblock.call("save", scope);
 	scope.usrcmd.call("save", scope);
 	scope.rpg.call("save", scope);
