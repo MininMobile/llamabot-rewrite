@@ -241,7 +241,7 @@ bot.on("message", async (message) => {
 		} break;
 
 		case "eval": {
-			if (message.author.id !== "176048981615312897") return;
+			if (message.author.id != "176048981615312897") return;
 
 			args.shift();
 			let code = args.join(" ");

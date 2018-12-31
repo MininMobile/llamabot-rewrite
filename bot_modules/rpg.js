@@ -49,7 +49,7 @@ Rpg.On("init", (scope) => {
 		}
 	}
 
-	bot.users.array().forEach((user) => {
+	Array.from(bot.users.values).forEach((user) => {
 		if (!Object.keys(scope.rpg.players).includes(user.id)) {
 			scope.rpg.players[user.id] = {
 				xp: 1000,
