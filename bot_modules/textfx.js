@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const Figlet = require("figlet");
 const Lunicode = require("./lunicode");
 const Command = require("./framework");

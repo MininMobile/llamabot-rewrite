@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const Fetch = require("fetch-subreddit");
 const _util = require("./util");
 const Command = require("./framework");
@@ -16,13 +16,13 @@ Reddit.AddCommand("meme,meirl,me_irl", (message, args, bot) => {
 			meme = memes[util.rand(0, memes.length-1)];
 		}
 		
-		let embed = new Discord.RichEmbed()
+		let embed = new discord.RichEmbed()
 			.setImage(meme)
 			.setFooter("meme from r/me_irl");
 
 		message.channel.send(embed).catch(console.error);
 	}).catch((e) => {
-		message.channel.send(`ERROR: ${e}`).catch(console.error);
+		message.channel.send(`ERROR: ${"```"}${e}${"```"}`).catch(console.error);
 	});
 });
 
@@ -43,12 +43,12 @@ Reddit.AddCommand("r,reddit", (message, args, bot) => {
 		let embed;
 
 		if (!_extensions.includes(post.substr(post.length-4))) {
-			embed = new Discord.RichEmbed()
+			embed = new discord.RichEmbed()
 				.setDescription("*...oh no, no image posts detected...*")
 				.setImage("https://i.kym-cdn.com/photos/images/newsfeed/001/285/460/8b6.jpg")
 				.setFooter(`post from r/${words}`);
 		} else {
-			embed = new Discord.RichEmbed()
+			embed = new discord.RichEmbed()
 				.setImage(post)
 				.setFooter(`post from r/${words}`);
 		}

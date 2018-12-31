@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const Command = require("./framework");
 const config = require("../src/config.json");
 
@@ -13,7 +13,7 @@ Mod.AddCommand("clear", (message, args, bot) => {
 		// cannot delete >100 messages error
 		if (parseInt(args[1]) > 99) return message.channel.send(`Invalid use of \`${config.prefix}${args[0]}\`, cannot delete more than 99 messages due to a discord limitation.`).catch(console.error);
 
-		message.channel.bulkDelete(parseInt(args[1]) + 1).catch((e) => message.channel.send(`ERROR: ${e}`));
+		message.channel.bulkDelete(parseInt(args[1]) + 1).catch((e) => message.channel.send(`ERROR: ${"```"}${e}${"```"}`));
 	} else {
 		// not enough args error
 		message.channel.send(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 9\` (max 99)`).catch(console.error);
@@ -21,7 +21,7 @@ Mod.AddCommand("clear", (message, args, bot) => {
 });
 
 Mod.AddCommand("purge", (message, args, bot) => {
-	message.channel.bulkDelete(100).catch((e) => message.channel.send(`ERROR: ${e}`));
+	message.channel.bulkDelete(100).catch((e) => message.channel.send(`ERROR: ${"```"}${e}${"```"}`));
 });
 
 module.exports = exports = Mod;

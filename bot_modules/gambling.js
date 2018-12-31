@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const _util = require("./util");
 const Command = require("./framework");
 
@@ -52,8 +52,8 @@ Gambling.AddCommand("flip", (message, args, bot) => {
 
 	let side = util.rand(1, 2);
 
-	let embed = new Discord.RichEmbed()
-		.attachFile(new Discord.Attachment(sides[side-1], "coin.png"))
+	let embed = new discord.RichEmbed()
+		.attachFile(new discord.Attachment(sides[side-1], "coin.png"))
 		.setDescription(`You've flipped a **${sideNames[side-1]}**!`)
 		.setImage("attachment://coin.png");
 

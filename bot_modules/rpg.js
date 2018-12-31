@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const fs = require("fs");
 const Command = require("./framework");
 const _util = require("./util");
@@ -101,8 +101,8 @@ Rpg.AddCommand("rpginfo,profile", (message, args, bot, scope) => {
 
 	let user = bot.users.get(id);
 
-	let embed = new Discord.RichEmbed()
-		.attachFile(new Discord.Attachment("src/img/user.png", "user.png"))
+	let embed = new discord.RichEmbed()
+		.attachFile(new discord.Attachment("src/img/user.png", "user.png"))
 		.setAuthor(user.username, "attachment://user.png")
 		.setColor(args[1] ? null : message.member.displayHexColor)
 		.setThumbnail(user.avatarURL)
@@ -129,8 +129,8 @@ Rpg.AddCommand("rpgtop,leaderboard", (message, args, bot, scope) => {
 
 	let user = bot.users.get(id);
 
-	let embed = new Discord.RichEmbed()
-		.attachFile(new Discord.Attachment("src/img/user.png", "user.png"))
+	let embed = new discord.RichEmbed()
+		.attachFile(new discord.Attachment("src/img/user.png", "user.png"))
 		.setAuthor(user.username, "attachment://user.png")
 		.setColor(args[1] ? null : message.member.displayHexColor)
 		.setThumbnail(user.avatarURL)
@@ -164,7 +164,7 @@ Rpg.AddCommand("inventory,inv", (message, args, bot, scope) => {
 	if (lines == "\n")
 		lines += "*...no items...*\n";
 
-	let embed = new Discord.RichEmbed()
+	let embed = new discord.RichEmbed()
 		.setAuthor("Inventory", message.author.avatarURL)
 		.setColor(message.member.displayHexColor)
 		.setDescription(lines)

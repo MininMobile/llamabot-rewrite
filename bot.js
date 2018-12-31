@@ -138,7 +138,7 @@ bot.on("message", async (message) => {
 			lines.push(`${bot.channels.size} **Channels**`);
 			lines.push(`${bot.guilds.size} **Servers**`);
 			lines.push(`${process.version} **Node.js Version**`);
-			lines.push(`${discord.version} **Discord.js Version**`);
+			lines.push(`${discord.version} **discord.js Version**`);
 			lines.push(`${memUsage.charAt(0) + memUsage.charAt(1) + memUsage.charAt(2) + memUsage.charAt(3)} GB / 2GB **Memory Usage**`);
 			lines.push(`${util.formatSecs(Math.floor(bot.uptime/1000))} **Uptime** (days:hours:mins:secs)`);
 		
@@ -169,7 +169,7 @@ bot.on("message", async (message) => {
 			if (message.author.presence.game) lines.push(`**Playing** ${message.author.presence.game.name}`);
 			                                  lines.push(`**Roles** \`${message.member.roles.map(r => r.name).reverse().join("`, `")}\``);
 			                                  lines.push(`**Server Join Date** ${message.member.joinedAt.toDateString()}`);
-			                                  lines.push(`**Discord Join Date** ${message.author.createdAt.toDateString()}`);
+			                                  lines.push(`**discord Join Date** ${message.author.createdAt.toDateString()}`);
 		
 			let embed = new discord.RichEmbed()
 				.setAuthor(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)

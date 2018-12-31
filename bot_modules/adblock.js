@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const fs = require("fs");
 const _util = require("./util");
 const Command = require("./framework");

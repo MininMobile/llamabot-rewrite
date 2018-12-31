@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const IsOnline = require("is-reachable");
 const Command = require("./framework");
 const config = require("../src/config.json");
@@ -36,15 +36,15 @@ Webutil.AddCommand("google,search", (message, args, bot) => {
 			q: words,
 			start: 1
 		}, (err, res) => {
-			if (err) return message.channel.send(`ERROR: ${e}`).catch(console.error);
+			if (err) return message.channel.send(`ERROR: ${"```"}${e}${"```"}`).catch(console.error);
 
 			try {
 				GoogleImageSearch.search(words).then((images) => {
-					let embed = new Discord.RichEmbed();
+					let embed = new discord.RichEmbed();
 		
 					if (res.searchInformation.totalResults == 0 || images.length == 0) {
 						embed
-							.attachFile(new Discord.Attachment("src/img/guess ill die.jpg", "die.jpg"))
+							.attachFile(new discord.Attachment("src/img/guess ill die.jpg", "die.jpg"))
 							.setDescription(`No results for **${words}**`)
 							.setThumbnail("attachment://die.jpg");
 					} else {
@@ -56,7 +56,7 @@ Webutil.AddCommand("google,search", (message, args, bot) => {
 					message.channel.send(embed).catch(console.error);
 				});
 			} catch (e) {
-				message.channel.send(`ERROR: ${e}`).catch(console.error);
+				message.channel.send(`ERROR: ${"```"}${e}${"```"}`).catch(console.error);
 			}
 		});
 	} else {

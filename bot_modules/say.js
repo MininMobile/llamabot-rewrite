@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const Command = require("./framework");
 
 const Say = new Command();
@@ -15,7 +15,7 @@ Say.AddCommand("embed", (message, args, bot) => {
 	args.shift();
 	let words = args.join(" ");
 
-	let embed = new Discord.RichEmbed()
+	let embed = new discord.RichEmbed()
 		.setAuthor(message.member.nickname || message.author.username, message.author.avatarURL)
 		.setColor(message.member.displayColor)
 		.setDescription(words);
