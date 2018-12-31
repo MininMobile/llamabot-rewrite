@@ -62,6 +62,8 @@ Rpg.On("init", (scope) => {
 });
 
 Rpg.AddCommand("rpgadmin", (message, args, bot, scope) => {
+	// debug command
+	// no input validation
 	if (message.author.id == "176048981615312897") {
 		switch (args[1]) {
 			case "save":

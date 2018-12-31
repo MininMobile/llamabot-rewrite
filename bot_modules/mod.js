@@ -5,6 +5,8 @@ const config = require("../src/config.json");
 const Mod = new Command();
 
 Mod.AddCommand("clear", (message, args, bot) => {
+	if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You do not have the `MANAGE_MESSAGES` permission.").catch(console.error);
+
 	if (args.length >= 2) {
 		// NaN error
 		if (isNaN(parseInt(args[1]))) return message.channel.send(`Invalid use of \`${config.prefix}${args[0]}\`, provided amount is not a number.`).catch(console.error);
@@ -21,6 +23,8 @@ Mod.AddCommand("clear", (message, args, bot) => {
 });
 
 Mod.AddCommand("purge", (message, args, bot) => {
+	if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You do not have the `MANAGE_MESSAGES` permission.").catch(console.error);
+
 	message.channel.bulkDelete(100).catch((e) => message.channel.send(`ERROR: ${"```"}${e}${"```"}`));
 });
 
