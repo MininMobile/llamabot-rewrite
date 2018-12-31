@@ -4,7 +4,7 @@ const _util = require("./util");
 const Command = require("./framework");
 const config = require("../src/config.json");
 
-const util = new _util(null);
+const util = new _util();
 
 const Adblock = new Command();
 

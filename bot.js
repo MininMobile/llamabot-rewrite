@@ -1,6 +1,5 @@
 //// import modules
 const discord = require("discord.js");
-const moment = require("moment");
 const fs = require("fs");
 const path = require("path");
 const _util = require("./bot_modules/util");
@@ -14,11 +13,8 @@ var scope = { };
 // discord.js
 const bot = new discord.Client();
 
-// moment
-moment.locale();
-
 // util
-const util = new _util(moment);
+const util = new _util();
 
 //// events
 // bot connect

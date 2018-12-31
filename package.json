@@ -23,6 +23,9 @@
     "google-images": "^2.1.0",
     "google-search": "0.0.5",
     "is-reachable": "^2.3.3",
-    "moment": "^2.19.3"
+    "moment": "^2.19.3",
+    "opusscript": "0.0.6",
+    "ytdl-core": "^0.28.3",
+    "ytdl-getinfo": "^1.1.0"
   }
 }

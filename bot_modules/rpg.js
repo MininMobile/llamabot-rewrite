@@ -4,7 +4,7 @@ const Command = require("./framework");
 const _util = require("./util");
 const config = require("../src/config.json")
 
-const util = new _util(null);
+const util = new _util();
 
 const Rpg = new Command();
 
@@ -87,7 +87,7 @@ Rpg.AddCommand("rpgadmin", (message, args, bot, scope) => {
 });
 
 Rpg.AddCommand("donate", (message, args, bot, scope) => {
-	if (args.length < 4) return message.reply(`ERROR: missing arguments, try something like \`${config.prefix}donate @zvava#9999 gold 1\`.`).catch(console.error);
+	if (args.length < 4) return message.reply(`ERROR: missing arguments, try something like \`${config.prefix}donate @zvava#0009 gold 1\`.`).catch(console.error);
 	if (args[1].startsWith("<@") && args[1].endsWith(">")) return message.reply("ERROR: invalid target.").catch(console.error)
 	if (!_donatable.includes(args[2])) return message.reply(`ERROR: you can only donate: ${_donatable.join(", ")}.`).catch(console.error);
 	if (parseInt(args[3]) === NaN) return message.reply(`ERROR: you can only donate amount of number`).catch(console.error);

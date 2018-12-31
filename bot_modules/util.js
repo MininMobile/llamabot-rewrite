@@ -1,5 +1,9 @@
+const moment = require("moment");
+
+moment.locale();
+
 class util {
-	constructor(moment) {
+	constructor() {
 		this.m = moment;
 	}
 

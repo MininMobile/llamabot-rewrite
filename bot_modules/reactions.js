@@ -3,7 +3,7 @@ const _util = require("./util");
 const Command = require("./framework");
 const r = require("../data/reactions.json");
 
-const util = new _util(null);
+const util = new _util();
 
 const Reactions = new Command();
 

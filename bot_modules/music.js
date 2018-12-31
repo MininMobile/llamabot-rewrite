@@ -1,11 +1,15 @@
 const discord = require("discord.js");
+const ytdl = require("ytdl-core");
+const { getInfo } = require("ytdl-getinfo");
+const _util = require("./util");
 const Command = require("./framework");
+const config = require("../src/config.json")
+
+const util = new _util();
 
 const Music = new Command();
 
 Music.AddCommand("summon", (message, args, bot) => {
-	let streamOptions = { seek: 0, volume: 1 };
-
 	if (message.member.voiceChannel == null) return message.reply("You are not in a voice channel.").catch(console.error);
 	if (message.member.voiceChannel.speakable == false) return message.reply("Bot is unable to speak in your voice channel.").catch(console.error);
 
@@ -15,41 +19,45 @@ Music.AddCommand("summon", (message, args, bot) => {
 Music.AddCommand("dc,disconnect", (message, args, bot) => {
 	if (message.member.voiceChannel == null) return message.reply("You are not in a voice channel.").catch(console.error);
 
-	message.member.voiceChannel.leave().catch((e) => message.channel.send(`ERROR: ${"```"}${e}${"```"}`));
+	message.member.voiceChannel.leave();
 });
 
-/*
-if (commandIs('play', message)) {
+Music.AddCommand("play", (message, args, bot) => {	
+	if (message.member.voiceChannel == null) return message.reply("You are not in a voice channel.").catch(console.error);
+	if (message.member.voiceChannel.speakable == false) return message.reply("Bot is unable to speak in your voice channel.").catch(console.error);
+	if (args[1] == undefined) return message.reply("Please provide a link to a YouTube video.").catch(console.error);
+
 	let streamOptions = { seek: 0, volume: 1 };
-	if (message.member.voiceChannel == null) {
-		message.reply('You are not in a voice channel. :thinking:')
-		log('User not in VC.');
-	} else if (message.member.voiceChannel.speakable == false) {
-		message.reply('Bot is unable to speak in your voice channel. :thinking:')
-		log("Can't talk in VC.");
-	} else {
-		if (args[1] == null) {
-			message.reply('Please use a proper YouTube video/SoundCloud Audio link, non-https urls are not allowed! :thinking:');
-		} else if (args[1].startsWith("https://youtube.com") || args[1].startsWith("https://www.youtube.com")) {
-			message.member.voiceChannel.join().then(connection => {
-				const stream = ytdl(args[1], {filter : 'audioonly'});
-				const dispatcher = connection.playStream(stream, streamOptions);
 
-				let infoEmbed = new discord.RichEmbed()
-					.addField("Now Playing", args[1], true)
-					.setFooter("Playing from YouTube, Bitrate is " + message.member.voiceChannel.bitrate + " kb/s")
-					.setThumbnail("https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png");
-				
-				message.channel.sendEmbed(infoEmbed);
-				console.log(`${moment().format('LTS')} | Playing Music at ${message.member.voiceChannel.bitrate} kb/s`);
+	args.shift();
+	let vquery = args.join(" ");
 
-				dispatcher.setVolume(0.25);
-			});
-		} else {
-			message.reply('Please use a proper YouTube video' + ', non-https urls are not allowed! :thinking:');
-		}
+	let video = {
+		//thumbnail: undefined,
+		title: undefined,
+		url: undefined
 	}
-}
-*/
+
+	getInfo(vquery).then((i) => {
+		let info = i.items[0];
+
+		video.title = info.title;
+		video.url = "https://www.youtube.com/watch?v=" + info.id;
+	}).then(() => {
+		message.member.voiceChannel.join().then((connection) => {
+			const stream = ytdl(video.url, {filter : 'audioonly'});
+			const dispatcher = connection.playStream(stream, streamOptions);
+	
+			let embed = new discord.RichEmbed()
+				.attachFile(new discord.Attachment("src/img/youtube.png", "youtube.png"))
+				.setDescription(`**Now Playing**\n${video.title}`)
+				.setThumbnail("attachment://youtube.png")
+				.setFooter("streaming from YouTube");
+			
+			message.channel.sendEmbed(embed);
+			util.log(`PLAYING ${video.title} AT ${message.member.voiceChannel.bitrate}kb/s IN ${message.guild.name} (PLAYING ${video.url} IN ${message.guild.id})`);
+		}).catch((e) => message.channel.send(`ERROR: ${"```"}${e}${"```"}`));
+	}).catch((e) => message.channel.send(`ERROR: ${"```"}${e}${"```"}`));
+});
 
 module.exports = exports = Music;

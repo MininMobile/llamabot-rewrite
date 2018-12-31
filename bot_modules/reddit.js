@@ -3,7 +3,7 @@ const Fetch = require("fetch-subreddit");
 const _util = require("./util");
 const Command = require("./framework");
 
-const util = new _util(null);
+const util = new _util();
 
 const Reddit = new Command();
 
