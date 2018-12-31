@@ -101,6 +101,15 @@ bot.on("message", async (message) => {
 			}).catch(console.log);
 		} break;
 
+		case "join":case "invite": {
+			let embed = new discord.RichEmbed()
+				.setAuthor(bot.user.username, bot.user.avatarURL)
+				.setDescription("[**>>**](https://discordapp.com/oauth2/authorize?client_id=292320341701689344&scope=bot&permissions=439675974) Invite")
+				.setFooter(`serving ${bot.guilds.size} servers`);
+
+			message.channel.send(embed).catch(console.error);
+		} break;
+
 		case "help": {
 			let lines = [];
 
@@ -110,6 +119,7 @@ bot.on("message", async (message) => {
 			lines.push("[**>>**](https://trello.com/b/9GCQPaPz/llama-bot-updates) Trello");
 			lines.push("[**>>**](https://discord.gg/BBax4jk) Support Server");
 			lines.push("[**>>**](https://sites.google.com/view/llamabotwiki/tos) Terms of Service");
+			lines.push(`\`${config.prefix}\` Prefix`);
 
 			let embed = new discord.RichEmbed()
 				.setAuthor(bot.user.username, bot.user.avatarURL)

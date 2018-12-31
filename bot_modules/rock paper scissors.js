@@ -7,7 +7,7 @@ const util = new _util(null);
 const rps = new Command();
 
 rps.AddCommand("rps,rockpaperscissors", (message, args, bot) => {
-	if (args[1] == null || undefined) return message.reply("enter `rock`, `paper`, or `scissors`, BUSTER!");
+	if (args[1] == null || undefined) return message.reply("enter `rock`, `paper`, or `scissors`, BUSTER!").catch(console.error);
 
 	const o = ["Rock", "Paper", "Scissors"];
 	let bC = util.rand(1, 3) - 1;

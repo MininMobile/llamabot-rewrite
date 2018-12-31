@@ -5,7 +5,7 @@ const config = require("../src/config.json");
 const Mathc = new Command();
 
 Mathc.AddCommand("add", (message, args, bot) => {
-	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 5 5\``);
+	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 5 5\``).catch(console.error);
 
 	args.shift();
 
@@ -17,7 +17,7 @@ Mathc.AddCommand("add", (message, args, bot) => {
 });
 
 Mathc.AddCommand("subtract,sub,min", (message, args, bot) => {
-	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 5 5\``);
+	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 5 5\``).catch(console.error);
 
 	args.shift();
 
@@ -31,7 +31,7 @@ Mathc.AddCommand("subtract,sub,min", (message, args, bot) => {
 });
 
 Mathc.AddCommand("multiply,mult", (message, args, bot) => {
-	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 5 5\``);
+	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 5 5\``).catch(console.error);
 
 	args.shift();
 
@@ -45,7 +45,7 @@ Mathc.AddCommand("multiply,mult", (message, args, bot) => {
 });
 
 Mathc.AddCommand("divide,div", (message, args, bot) => {
-	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 5 5\``);
+	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 5 5\``).catch(console.error);
 
 	args.shift();
 
@@ -59,13 +59,13 @@ Mathc.AddCommand("divide,div", (message, args, bot) => {
 });
 
 Mathc.AddCommand("squareroot,sqrt,sq", (message, args, bot) => {
-	if (!va(args, 1)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 36\``);
+	if (!va(args, 1)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 36\``).catch(console.error);
 
 	message.channel.send(Math.sqrt(parseInt(args[1]))).catch(console.error);
 });
 
 Mathc.AddCommand("perimeter,peri", (message, args, bot) => {
-	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 8 4\``);
+	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 8 4\``).catch(console.error);
 
 	let num1 = parseInt(args[1]);
 	let num2 = parseInt(args[2]);
@@ -77,7 +77,7 @@ Mathc.AddCommand("perimeter,peri", (message, args, bot) => {
 });
 
 Mathc.AddCommand("area", (message, args, bot) => {
-	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 8 4\``);
+	if (!va(args)) return message.reply(`Invalid use of \`${config.prefix}${args[0]}\`, use like \`${config.prefix}${args[0]} 8 4\``).catch(console.error);
 
 	let num1 = parseInt(args[1]);
 	let num2 = parseInt(args[2]);

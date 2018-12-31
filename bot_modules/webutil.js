@@ -20,7 +20,7 @@ Webutil.AddCommand("online", (message, args, bot) => {
 			}
 		});
 	} else {
-		message.reply(`enter a URL to ping, eg. \`${config.prefix}${args[0]} duckduckgo.com\``);
+		message.reply(`enter a URL to ping, eg. \`${config.prefix}${args[0]} duckduckgo.com\``).catch(console.error);
 	}
 });
 
@@ -60,7 +60,7 @@ Webutil.AddCommand("google,search", (message, args, bot) => {
 			}
 		});
 	} else {
-		message.reply(`enter something to search, eg. \`${config.prefix}${args[0]} I have a lump on my foot\``);
+		message.reply(`enter something to search, eg. \`${config.prefix}${args[0]} I have a lump on my foot\``).catch(console.error);
 	}
 });
 

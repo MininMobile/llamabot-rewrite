@@ -87,13 +87,13 @@ Rpg.AddCommand("rpgadmin", (message, args, bot, scope) => {
 });
 
 Rpg.AddCommand("donate", (message, args, bot, scope) => {
-	if (args.length < 4) return message.reply(`ERROR: missing arguments, try something like \`${config.prefix}donate @zvava#9999 gold 1\`.`);
-	if (args[1].startsWith("<@") && args[1].endsWith(">")) return message.reply("ERROR: invalid target.")
-	if (!_donatable.includes(args[2])) return message.reply(`ERROR: you can only donate: ${_donatable.join(", ")}.`);
-	if (parseInt(args[3]) === NaN) return message.reply(`ERROR: you can only donate amount of number`);
-	if (parseInt(args[3]) < 0) return message.reply(`ERROR: you cannot donate negative amounts`);
+	if (args.length < 4) return message.reply(`ERROR: missing arguments, try something like \`${config.prefix}donate @zvava#9999 gold 1\`.`).catch(console.error);
+	if (args[1].startsWith("<@") && args[1].endsWith(">")) return message.reply("ERROR: invalid target.").catch(console.error)
+	if (!_donatable.includes(args[2])) return message.reply(`ERROR: you can only donate: ${_donatable.join(", ")}.`).catch(console.error);
+	if (parseInt(args[3]) === NaN) return message.reply(`ERROR: you can only donate amount of number`).catch(console.error);
+	if (parseInt(args[3]) < 0) return message.reply(`ERROR: you cannot donate negative amounts`).catch(console.error);
 
-	message.reply(":ok_hand:");
+	message.reply(":ok_hand:").catch(console.error);
 });
 
 Rpg.AddCommand("rpginfo,profile", (message, args, bot, scope) => {

@@ -12,7 +12,7 @@ Textfx.AddCommand("big", (message, args, bot) => {
 	let words = args.join(" ");
 
 	Figlet(words, (err, big) => {
-		if (err) return message.reply(err);
+		if (err) return message.reply(err).catch(console.error);
 
 		message.channel.send("```" + big + "```").catch(console.error);
 	});

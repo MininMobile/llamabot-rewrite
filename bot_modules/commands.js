@@ -30,14 +30,14 @@ Commands.On("init", (scope) => {
 
 Commands.AddCommand("command", (message, args, bot, scope) => {
 	if (message.author.id != "176048981615312897") {
-		if (!message.member.hasPermission("MANAGE_SERVER")) return message.reply("you do not have the permission `MANAGE_SERVER`");
+		if (!message.member.hasPermission("MANAGE_SERVER")) return message.reply("you do not have the permission `MANAGE_SERVER`").catch(console.error);
 	}
 
 	args.shift();
 
 	if (message.author.id == "176048981615312897" && args[0] == "-s") {
 		scope.usrcmd.call("save", scope);
-		message.reply("saved JSON list for user commands.");
+		message.reply("saved JSON list for user commands.").catch(console.error);
 	} else {
 		if (args.length == 1 && scope.usrcmd.commands[message.guild.id][args[0]]) {
 			delete scope.usrcmd.commands[message.guild.id][args[0]];
@@ -51,7 +51,7 @@ Commands.AddCommand("command", (message, args, bot, scope) => {
 				.then((m) => { setTimeout(() => { m.delete(); }, 5000) });
 			scope.usrcmd.call("save", scope);
 		} else {
-			message.reply("not enough arguments.");
+			message.reply("not enough arguments.").catch(console.error);
 		}
 	}
 });
