@@ -75,6 +75,9 @@ bot.on("message", async (message) => {
 	// ignore messages w/o prefix
 	if (!message.content.startsWith(config.prefix)) return;
 
+	// dumbass repellant
+	if (message.content.startsWith(`${config.prefix} `)) message.reply("please - don't put a space between the prefix and the message.")
+
 	// setup scope
 	scope.message = message;
 	scope.rpg.call("message", scope);
