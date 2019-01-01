@@ -177,6 +177,53 @@ Rpg.AddCommand("inventory,inv", (message, args, bot, scope) => {
 	message.channel.send(embed).catch(console.error);
 });
 
+Rpg.AddCommand("mine,fish,forest", (message, args, bot, scope) => {
+	let _miningLoot;
+	let _fishingLoot;
+	let _forestLoot;
+
+	{ // create loot
+		_miningLoot = [
+			"Stone",
+			"Dirt",
+			"Iron",
+			"Silicon",
+			"Compound",
+			"Coal",
+			"Diamond",
+			"Hemitate",
+			"Amethyst",
+			"Lapis",
+			"Blue Hemitate",
+			"Jasper",
+			"Saphire",
+			"Kryptonite",
+			"Gold",
+			"Emerald",
+			"Quartz",
+			"Pink Quartz"
+		];
+	
+		_fishingLoot = [
+			"Salmon",
+			"Tuna",
+			"Escolar",
+			"Cod",
+			"Pufferfish",
+			"ClownFish"
+		];
+	
+		_forestLoot = [
+			"Spruce Log",
+			"Birch Log",
+			"Oak Log",
+			"Maple Log",
+			"Leaf",
+			"Apple"
+		];
+	}
+});
+
 // xp to give
 function xpr(xp) {
 	return util.csch(xp / 50000) + 1;
